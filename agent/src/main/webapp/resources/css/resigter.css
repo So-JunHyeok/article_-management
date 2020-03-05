@@ -1,0 +1,118 @@
+@charset "UTF-8";
+
+
+.register_contents_area{
+	height: 87%;
+
+}
+
+.basic_information{
+	padding-top: 10px;
+	width: 80%;
+	height: auto;
+	margin: 0 auto;
+}
+
+.bi_table1{
+	width: 100%;
+	border-spacing: 0px;
+	
+}
+.bi_table1 th{
+	background: buttonface; 
+		border: 0.5px solid gray;
+}
+.bi_table1 td{
+	border: 0.5px solid gray;
+}
+.bi_table2{
+	width: 60%;
+	border-spacing: 0px;
+
+	
+}
+.bi_table2 th{
+	background: buttonface; 
+		border: 0.5px solid gray;
+}
+.bi_table2 td{
+	border: 0.5px solid gray;
+}
+
+
+.building_address_map{
+	width: 38%;
+}
+
+.building_address_map img{
+	width: 100%;
+}
+.building_information1{
+	width: 62%;
+}
+
+
+
+
+.object_kind_select{
+	width: 95%;
+	
+}
+
+.object_kind_button{
+	width: 5%;
+}
+
+.object_kind_button button{
+	width: 100%;
+	height: 100%;
+}
+
+.object_informatin input{
+	width: 120px;
+	
+}
+
+.object_informatin select{
+	width: 120px;
+	
+}
+
+.object_kind_select input{
+	background: white;
+	color: #0c2a3a;
+	padding: 3px;
+	font-weight: bold;
+}
+
+.object_kind_select button{
+	background: white;
+	color: #0c2a3a;
+	padding: 3px;
+	font-weight: bold;
+}
+
+
+.search_area{
+	width: 50%;
+	height: 100px;
+	margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+}
+
+.search_area span{
+	font-size: 16px;
+	font-weight: bold;
+	color: white;
+}
+
+.address_search{
+	width: 45%;
+	height: 30px;
+}
+
+
+.customar_drop{
+  display: none;
+}

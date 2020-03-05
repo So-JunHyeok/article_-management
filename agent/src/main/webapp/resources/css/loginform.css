@@ -1,0 +1,100 @@
+@charset "UTF-8";
+
+html{
+	height: 100%;
+}
+
+
+.wrap{
+	width: 100%;
+	height: 100%;
+}
+
+.baner{
+	width: 100%;
+	height: 1200px;
+}
+
+.baner img{
+	width: 100%;
+	height: 100%;
+}
+
+
+.cobar{
+	width: 100%; 
+	height: 100%; 
+	position: absolute; 
+	top: 0px; left: 0px; 
+	background: black; 
+	opacity: 0.5
+}
+
+
+.login_area{
+	width: 430px; 
+	margin: 0 auto;"
+}
+
+.login_area input{
+	
+	width: 100%;
+	height: 30px;
+}
+
+
+.login{
+	width: 630px; 
+	height:580px; 
+	position: absolute; 
+	top: 200px; 
+	left: 640px; 
+	background: white; 
+	border-radius: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+@media(max-width: 981px)  {
+.login{
+    width: 800px;
+    height: 700px;
+    position: absolute;
+    top: 450px;
+    left: 95px;
+    background: white;
+    border-radius: 5px;
+}
+
+
+.login_area{
+	width: 500px; 
+	margin: 0 auto;"
+}
+
+.login_area input{
+	font-size: 21px;
+	width: 100%;
+	height: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+}
+	
+	

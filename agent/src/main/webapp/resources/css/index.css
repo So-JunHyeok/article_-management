@@ -1,0 +1,165 @@
+@charset "UTF-8";
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,textarea,p,blockquote,th,td,input,select,button{margin:0;padding:0}
+fieldset,img{border:0 none}
+
+
+
+
+
+
+.manubar{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	border-bottom: 1px solid #FAFAFA;
+
+}
+
+.manuarea a{
+	    text-decoration: none;
+	    color: #3d1261;
+}
+
+.logoarea{
+	width: 12%;
+	height: 100%;	
+}
+
+.logoarea img{
+	width: 100%;
+	height: 100%;
+}
+
+.manuarea{
+	width: 25%;
+    height: 20px;
+    padding-left: 5%;
+    padding-top: 25px;
+    padding-bottom: 30px;
+    padding-right: 5%;
+}
+
+.manuarea span{
+	margin-left: 15px;
+	font-weight: bold;
+}
+	
+.subarea1{
+	width: 49%;	
+	height: 100%;
+}
+
+.subarea2{
+	width: 4%;
+	height: 100%;
+	padding-top: 5px;
+	display: flex;
+}	
+
+.subarea2 p{
+    font-weight: bold;
+    margin-top: -5px;
+    margin-left: -4px;
+    color: black;
+    font-size: 13px;
+}
+
+.logout_img{
+	width: 30px;
+    height: 35px
+
+}	
+
+
+
+
+
+
+
+
+
+
+
+
+@media(max-width: 980px)  {
+	
+.manubar{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	border-bottom: 1px solid #FAFAFA;
+
+}
+
+.manuarea a{
+	    text-decoration: none;
+	    color: #3d1261;
+	    font-size: 26px;
+}
+
+.logoarea{
+	width: 25%;
+	height: 100%;	
+}
+
+.logoarea img{
+	width: 100%;
+	height: 100%;
+}
+
+.manuarea{
+	width: 66%;
+    height: 20px;
+    padding-left: 0%;
+    padding-top: 25px;
+    padding-bottom: 30px;
+    padding-right: 0%;
+}
+
+.manuarea span{
+	margin-left: 15px;
+	font-weight: bold;
+}
+	
+.subarea1{
+	display: none;
+	width: 40%;	
+	height: 100%;
+}
+
+.subarea2{
+	width: 6%;
+	height: 100%;
+	padding-top: 5px;
+	display: block;
+}	
+
+.subarea2 p{
+display: none;
+}
+	
+.logout_img{
+    width: 40px;
+    height: 50px;
+    margin-top: 11px;
+
+}	
+		
+}
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+	

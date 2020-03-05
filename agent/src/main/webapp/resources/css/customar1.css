@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+
+.left_customar{
+	border-right: 1px solid black;
+	width: 45%;
+}
+
+
+.left_customar table{
+border-spacing: 0px;
+width: 100%;	
+	text-align: center;
+	
+}
+
+.left_customar button{
+	width: 100%;
+}
+
+.right_customar_object{
+	width: 55%;
+}
+
+.right_customar_object table{
+	border-spacing: 0px;
+	width: 100%;
+	text-align: center;
+}
+
+.right_customar_object button{
+	width: 100%;	
+	
+}
+
+.customar_seach{
+	height: 80%;
+}
+
+.customar_seet{
+	height: 20%;
+	padding-top: 3px;
+	padding-left: 5px;
+}
+
+.customar_seet button{
+	width: 50px;
+}
+
+.rco_top{
+	height: 50%;
+}
+
+.rco_bottom{
+	height: 50%;
+}
+.rco_bottom button{
+	width: 100%;
+}

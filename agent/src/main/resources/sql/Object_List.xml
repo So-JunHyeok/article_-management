@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="Board">
+
+<select id="getObject_List" resultType="Object_List" parameterType="Map">
+	
+	
+
+			select * from Object_List 
+	<where>
+		<if test="state=='계약off'">		
+			<if test="ListOption=='OneRoom'">OB_Kind = "원룸" and OB_State != "계약"</if>
+			<if test="ListOption=='TwoRoom'">OB_Kind = "2룸" and OB_State != "계약"</if>
+			<if test="ListOption=='ThreeRoom'">OB_Kind = "3룸" and OB_State != "계약"</if>
+			<if test="ListOption=='Officetel'">OB_Kind = "오피스텔" and OB_State != "계약"</if>
+			<if test="ListOption=='Villa'">OB_Kind = "빌라" and OB_State != "계약"</if>
+			<if test="ListOption=='Apartment'">OB_Kind = "아파트" and OB_State != "계약"</if>
+			<if test="ListOption=='Shop'">OB_Kind = "상가" and OB_State != "계약"</if>
+			<if test="ListOption=='Shop_House'">OB_Kind = "상가주택" and OB_State != "계약"</if>
+			<if test="ListOption=='House'">OB_Kind = "주택" and OB_State != "계약"</if>
+			<if test="ListOption=='Land'">OB_Kind = "토지" and OB_State != "계약"</if>
+		</if>	
+			
+		<if test="state=='계약on'">						
+			<if test="ListOption=='OneRoom'">OB_Kind = "원룸"</if>
+			<if test="ListOption=='TwoRoom'">OB_Kind = "2룸"</if>
+			<if test="ListOption=='ThreeRoom'">OB_Kind = "3룸"</if>
+			<if test="ListOption=='Officetel'">OB_Kind = "오피스텔"</if>
+			<if test="ListOption=='Villa'">OB_Kind = "빌라"</if>
+			<if test="ListOption=='Apartment'">OB_Kind = "아파트"</if>
+			<if test="ListOption=='Shop'">OB_Kind = "상가"</if>
+			<if test="ListOption=='Shop_House'">OB_Kind = "상가주택"</if>
+			<if test="ListOption=='House'">OB_Kind = "주택"</if>
+			<if test="ListOption=='Land'">OB_Kind = "토지"</if>	
+		</if>				
+	</where>
+			order by OB_Date desc
+			limit #{paging}, #{countpage}
+
+</select>
+
+
+
+<select id="getSubList" resultType="Object_List" parameterType="Map">
+	
+	
+	
+			select * from Object_List 
+			<where>
+				<if test="AC_Name=='sublist'">
+					<if test="state=='계약on'">	
+					OB_B_Address = #{b_address}	
+					</if>
+					<if test="state=='계약off'">	
+					OB_State != "계약" and OB_B_Address = #{b_address}  
+					</if>
+				</if>	
+				
+				<if test="AC_Name=='ob_view'">
+				OB_Num = #{OB_Num}	
+				</if>		
+	
+			</where>
+			order by OB_Date desc;
+
+</select>
+
+
+<select id="get_Object_Count" resultType="int" parameterType="Map">
+			select count(OB_Num) from Object_List 
+			<where>
+			
+		<if test="state=='계약off'">		
+			<if test="ListOption=='OneRoom'">OB_Kind = "원룸" and OB_State != "계약"</if>
+			<if test="ListOption=='TwoRoom'">OB_Kind = "2룸" and OB_State != "계약"</if>
+			<if test="ListOption=='ThreeRoom'">OB_Kind = "3룸" and OB_State != "계약"</if>
+			<if test="ListOption=='Officetel'">OB_Kind = "오피스텔" and OB_State != "계약"</if>
+			<if test="ListOption=='Villa'">OB_Kind = "빌라" and OB_State != "계약"</if>
+			<if test="ListOption=='Apartment'">OB_Kind = "아파트" and OB_State != "계약"</if>
+			<if test="ListOption=='Shop'">OB_Kind = "상가" and OB_State != "계약"</if>
+			<if test="ListOption=='Shop_House'">OB_Kind = "상가주택" and OB_State != "계약"</if>
+			<if test="ListOption=='House'">OB_Kind = "주택" and OB_State != "계약"</if>
+			<if test="ListOption=='Land'">OB_Kind = "토지" and OB_State != "계약"</if>
+		</if>	
+			
+		<if test="state=='계약on'">						
+			<if test="ListOption=='OneRoom'">OB_Kind = "원룸"</if>
+			<if test="ListOption=='TwoRoom'">OB_Kind = "2룸"</if>
+			<if test="ListOption=='ThreeRoom'">OB_Kind = "3룸"</if>
+			<if test="ListOption=='Officetel'">OB_Kind = "오피스텔"</if>
+			<if test="ListOption=='Villa'">OB_Kind = "빌라"</if>
+			<if test="ListOption=='Apartment'">OB_Kind = "아파트"</if>
+			<if test="ListOption=='Shop'">OB_Kind = "상가"</if>
+			<if test="ListOption=='Shop_House'">OB_Kind = "상가주택"</if>
+			<if test="ListOption=='House'">OB_Kind = "주택"</if>
+			<if test="ListOption=='Land'">OB_Kind = "토지"</if>	
+		</if>				
+			</where>
+
+</select>
+
+
+
+			<select id="get_filter_list" resultType="Object_List" parameterType="Map">
+
+			select * from Object_List 
+			<where>
+			<if test="state=='계약on'">	 
+				OB_Kind = #{fileter.kind} and
+				<if test="OB_Form=='매매'">
+				OB_Form = #{fileter.form} and
+				</if>
+				<if test="OB_Form!='매매'">
+				OB_Form LIKE CONCAT('%',#{fileter.form},'%') and
+				</if>
+				OB_Dong = #{fileter.dong} and
+				<if test="floor!= 0">
+	 			OB_Floor = #{fileter.floor} and
+	 			</if>
+				OB_Month_Cost BETWEEN #{fileter.month_min} and #{fileter.month_max}
+				and OB_M2 BETWEEN #{fileter.m2_min} and #{fileter.m2_max}
+				and OB_Deposit BETWEEN #{fileter.deposit_min} and #{fileter.deposit_max}
+				and OB_Premium_Cost BETWEEN #{fileter.premium_min} and #{fileter.premium_max}
+				and OB_Maintenance_Cost BETWEEN #{fileter.mcost_min} and #{fileter.mcost_max}  
+			</if>
+			
+			<if test="state=='계약off'">	
+			OB_Kind = #{fileter.kind} and
+			OB_State != "계약" and
+				<if test="OB_Form=='매매'">
+				OB_Form = #{fileter.form} and
+				</if>
+				<if test="OB_Form!='매매'">
+				OB_Form LIKE CONCAT('%',#{fileter.form},'%') and
+				</if>
+				OB_Dong = #{fileter.dong} and
+				<if test="floor!= 0">
+	 			OB_Floor = #{fileter.floor} and
+	 			</if>
+				OB_Month_Cost BETWEEN #{fileter.month_min} and #{fileter.month_max}
+				and OB_M2 BETWEEN #{fileter.m2_min} and #{fileter.m2_max}
+				and OB_Deposit BETWEEN #{fileter.deposit_min} and #{fileter.deposit_max}
+				and OB_Premium_Cost BETWEEN #{fileter.premium_min} and #{fileter.premium_max}
+				and OB_Maintenance_Cost BETWEEN #{fileter.mcost_min} and #{mcost_max}  
+				
+			
+			</if>
+			</where>
+			order by OB_Date desc
+			limit #{paging}, #{countpage}
+
+</select>
+
+
+
+<select id="get_filter_list_count" resultType="int" parameterType="Map">
+
+			select count(OB_Num) from Object_List 
+			<where>
+			<if test="state=='계약on'">	 
+				OB_Kind = #{kind} and
+				<if test="OB_Form=='매매'">
+				OB_Form = #{form} and
+				</if>
+				<if test="OB_Form!='매매'">
+				OB_Form LIKE CONCAT('%',#{form},'%') and
+				</if>
+				OB_Dong = #{dong} and
+				<if test="floor!= 0">
+	 			OB_Floor = #{floor} and
+	 			</if>
+				OB_Month_Cost BETWEEN #{month_min} and #{month_max}
+				and OB_M2 BETWEEN #{m2_min} and #{m2_max}
+				and OB_Deposit BETWEEN #{deposit_min} and #{deposit_max}
+				and OB_Premium_Cost BETWEEN #{premium_min} and #{premium_max}
+				and OB_Maintenance_Cost BETWEEN #{mcost_min} and #{mcost_max}  
+			</if>
+			
+			<if test="state=='계약off'">	
+			OB_Kind = #{kind} and
+			OB_State != "계약" and
+				<if test="OB_Form=='매매'">
+				OB_Form = #{form}
+				</if>
+				<if test="OB_Form!='매매'">
+				OB_Form LIKE CONCAT('%',#{form},'%') and
+				</if>
+				OB_Dong = #{dong} and
+				<if test="floor!= 0">
+	 			OB_Floor = #{floor} and
+	 			</if>
+				OB_Month_Cost BETWEEN #{month_min} and #{month_max}
+				and OB_M2 BETWEEN #{m2_min} and #{m2_max}
+				and OB_Deposit BETWEEN #{deposit_min} and #{deposit_max}
+				and OB_Premium_Cost BETWEEN #{premium_min} and #{premium_max}
+				and OB_Maintenance_Cost BETWEEN #{mcost_min} and #{mcost_max}  
+				
+			
+			</if>
+
+			</where>
+		
+
+</select>
+
+
+
+
+
+
+
+
+<select id="get_Last_num" resultType="int" parameterType="Map">
+		SELECT OB_Num FROM Object_List ORDER BY OB_Num DESC LIMIT 1 
+
+</select>
+
+
+
+
+
+<insert id="insert_ob_list" parameterType="Map">
+
+insert Object_List(
+OB_Num, OB_Date, OB_Kind, OB_Form, OB_Name, OB_S_Address, OB_B_Address,
+OB_Floor, OB_Ho, OB_Month_Cost, OB_Deposit, OB_Premium_Cost, 
+OB_Maintenance_Cost, OB_Dealing_Cost, OB_Pyeong, OB_M2, OB_Content, OB_Lessor_Tel, 
+OB_Tenant_Tel, OB_Deal_State, OB_Dong, OB_D_Kind, OB_Surtax, OB_Type)
+values(
+0,
+#{OB_List.OB_Date},
+#{OB_List.OB_Kind},
+#{OB_List.OB_Form},
+#{OB_List.OB_Name},
+#{OB_List.OB_S_Address},
+#{OB_List.OB_B_Address},
+#{OB_List.OB_Floor},
+#{OB_List.OB_Ho},
+#{OB_List.OB_Month_Cost},
+#{OB_List.OB_Deposit},
+#{OB_List.OB_Premium_Cost},
+#{OB_List.OB_Maintenance_Cost},
+#{OB_List.OB_Dealing_Cost},
+#{OB_List.OB_Pyeong},
+#{OB_List.OB_M2},
+#{OB_List.OB_Content},
+#{OB_List.OB_Lessor_Tel},
+#{OB_List.OB_Tenant_Tel},
+#{OB_List.OB_Deal_State},
+#{OB_List.OB_Dong},
+#{OB_List.OB_D_Kind},
+#{OB_List.OB_Surtax},
+#{OB_List.OB_Type}
+)
+</insert>
+
+<insert id="insert_obfiles" parameterType="Map">
+
+insert Object_file(
+OF_Num, OB_Num, OBF_Num, OF_Original_file, OF_File_path, OF_File_size, Of_File_width, OF_File_height, OF_File_date)
+values(
+0,
+#{LastNum},
+#{OBF_Num},
+#{filename},
+#{uploadFileName},
+#{fileSize},
+#{imgWidth},
+#{imgHeight},
+#{date}
+)
+
+</insert>
+
+<select id="get_file_list" resultType="file_path" parameterType="Map">
+	select OF_File_path from Object_file
+	<where>
+	OB_Num = #{OB_Num}
+	</where>
+
+</select>
+
+
+
+<delete id="object_delete" parameterType="Map">
+delete from Object_List
+<where>
+	OB_Num = #{OB_Num}
+</where> 
+
+
+
+</delete>
+
+
+
+<update id="update_OB_State" parameterType="Map">
+	update Object_List 
+	set OB_State = #{State}
+	
+	<where>
+		OB_Num = #{OB_Num}
+	</where>
+
+</update>
+
+<update id="update_object" parameterType="Map">
+	update Object_List set
+	
+	OB_Kind = #{object.OB_Kind},
+	OB_Form = #{object.OB_Form},
+	OB_Name = #{object.OB_Name},
+	OB_S_Address = #{object.OB_S_Address},
+	OB_B_Address = #{object.OB_B_Address},
+	OB_Floor = #{object.OB_Floor},
+	OB_Ho = #{object.OB_Ho},
+	OB_Month_Cost = #{object.OB_Month_Cost},
+	OB_Deposit = #{object.OB_Deposit},
+	OB_Premium_Cost = #{object.OB_Premium_Cost},
+	OB_Maintenance_Cost = #{object.OB_Maintenance_Cost},
+	OB_Dealing_Cost = #{object.OB_Dealing_Cost},
+	OB_Pyeong = #{object.OB_Pyeong},
+	OB_M2 = #{object.OB_M2},
+	OB_Content = #{object.OB_Content},
+	OB_Lessor_Tel = #{object.OB_Lessor_Tel},
+	OB_Tenant_Tel = #{object.OB_Tenant_Tel},
+	OB_Deal_State = #{object.OB_Deal_State},
+	OB_Dong = #{object.OB_Dong},
+	OB_D_Kind = #{object.OB_D_Kind},
+	OB_Surtax = #{object.OB_Surtax},
+	OB_State = #{object.OB_State},
+	OB_Type = #{object.OB_Type}
+	
+	<where>
+		OB_Num = #{OB_Num}
+	</where>			
+				
+				
+
+</update>
+
+
+<select id="select_dong_List" parameterType="Map" resultType="ob_select_dong_list">
+	select DISTINCT OB_Dong from Object_List
+</select>
+
+
+
+<select id="get_obf_num" parameterType="Map" resultType="int">
+	select OBF_Num from Object_file 
+	
+	<where>
+		OB_Num = #{ob_num}
+	</where>
+  	 order by OBF_Num DESC LIMIT 1 
+</select>
+
+
+</mapper>

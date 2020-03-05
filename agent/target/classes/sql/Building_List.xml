@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="Building">
+
+<select id="getBuilding_List" resultType="Building_List" parameterType="Map">
+	
+			
+
+			select * from Building_List
+			<where>
+			BL_Num = #{BL_Num}
+
+			</where>
+
+
+</select>
+
+
+<select id="getBuilding_search" resultType="Building_List" parameterType="Map">
+	
+			
+
+			select * from Building_List
+			<where>
+			BL_Num = #{BL_Num}
+			</where>
+
+
+</select>
+
+
+
+
+<select id="get_Building_List_Count" resultType="int" parameterType="Map">
+			select distinct BL_Num from Building_List order by BL_Num desc limit 1;
+			<where>
+				
+			</where>
+
+</select>
+
+<select id="getBuilding_List_min" resultType="int" parameterType="Map">
+select distinct BL_Num from Building_List order by BL_Num asc limit 1;
+
+</select>
+
+
+
+
+<select id="get_bl_inset_num" resultType="int" parameterType="Map">
+		
+		SELECT BL_Num FROM Building_List ORDER BY BL_Num DESC LIMIT 1 
+
+</select>
+
+
+
+<insert id="insert_building" parameterType="Map">
+insert Building_List(BL_Num, BL_Name, BL_B_Address, BL_S_Address, BL_Use, BL_Completion_Year, BL_Surface,
+BL_Floor_Area_Ratio, BL_Building_Ratio, BL_Total_Floor, BL_Parking, BL_Violation, BL_N_of_H, BL_Land_Purpose,
+BL_Use_District, BL_Road,BL_Content, BL_Tel,BL_Elevator, BL_Plottage, BL_Remodeling, BL_Structure, BL_Floor_use,
+BL_dong, BL_Climatisation,BL_Total_area, BL_Subway, BL_Specific_Use)
+values(
+0,
+#{Building_List.BL_Name},
+#{Building_List.BL_B_Address},
+#{Building_List.BL_S_Address},
+#{Building_List.BL_Use},
+#{Building_List.BL_Completion_Year},
+#{Building_List.BL_Surface},
+#{Building_List.BL_Floor_Area_Ratio},
+#{Building_List.BL_Building_Ratio},
+#{Building_List.BL_Total_Floor},
+#{Building_List.BL_Parking},
+#{Building_List.BL_Violation},
+#{Building_List.BL_N_of_H},
+#{Building_List.BL_Land_Purpose},
+#{Building_List.BL_Use_District},
+#{Building_List.BL_Road},
+#{Building_List.BL_Content},
+#{Building_List.BL_Tel},
+#{Building_List.BL_Elevator},
+#{Building_List.BL_Plottage},
+#{Building_List.BL_Remodeling},
+#{Building_List.BL_Structure},
+#{Building_List.BL_Floor_use},
+#{Building_List.BL_dong},
+#{Building_List.BL_Climatisation},
+#{Building_List.BL_Total_area},
+#{Building_List.BL_Subway},
+#{Building_List.BL_Specific_Use}
+)
+
+</insert>
+
+<insert id="insert_blfiles" parameterType="Map">
+
+insert Building_file(
+BF_Num, BL_Num, BLF_Num, BF_Original_file, BF_File_path, BF_File_size, BF_File_width, BF_File_height, BF_File_date, BF_Type)
+values(
+0,
+#{LastNum},
+#{BBF_Num},
+#{filename},
+#{uploadFileName},
+#{fileSize},
+#{imgWidth},
+#{imgHeight},
+#{date},
+#{BL_Type}
+)
+
+</insert>
+
+<select id="get_blfile_list" resultType="bl_file_path2" parameterType="Map">
+	select BL_File_path from Building_file
+	<where>
+
+	 BL_Num = #{BL_Num}
+	
+	</where>
+
+</select>
+
+
+<select id="get_bl_list_count" resultType="int" parameterType="Map">
+	select distinct BL_Num from Building_List order by BL_Num desc limit 1;
+</select>
+
+
+<update id="update_bl_list" parameterType="Map">
+		update Building_List set
+		
+		BL_Name = #{list.BL_Name},
+		BL_B_Address = #{list.BL_B_Address},
+		BL_S_Address = #{list.BL_S_Address},
+		BL_Use = #{list.BL_Use},
+		BL_Parking = #{list.BL_Parking},
+		BL_Violation = #{list.BL_Violation},
+		BL_Land_Purpose = #{list.BL_Land_Purpose},
+		BL_Use_District = #{list.BL_Use_District},
+		BL_Specific_Use = #{list.BL_Specific_Use},
+		BL_Road = #{list.BL_Road},
+		BL_Content = #{list.BL_Content},
+		BL_Tel = #{list.BL_Tel},
+		BL_Elevator = #{list.BL_Elevator},
+		BL_Completion_Year = #{list.BL_Completion_Year},
+		BL_Surface = #{list.BL_Surface},
+		BL_Floor_Area_Ratio = #{list.BL_Floor_Area_Ratio},
+		BL_Building_Ratio = #{list.BL_Building_Ratio},
+		BL_Total_Floor = #{list.BL_Total_Floor},
+		BL_N_of_H = #{list.BL_N_of_H},
+		BL_Plottage = #{list.BL_Plottage},
+		BL_Total_area = #{list.BL_Total_area},
+		BL_Remodeling = #{list.BL_Remodeling},
+		BL_Structure = #{list.BL_Structure},
+		BL_Floor_use = #{list.BL_Floor_use},
+		BL_dong = #{list.BL_dong},
+		BL_Climatisation = #{list.BL_Climatisation},
+		BL_Subway = #{list.BL_Subway}
+		
+		
+	
+	<where>
+		BL_Num = #{BL_Num}
+	</where>
+	
+</update>
+
+<delete id="delete_bl_list" parameterType="Map">
+	delete from Building_List 
+	<where>
+		BL_Num = #{BL_Num}
+	</where>
+
+</delete>
+
+<delete id="delete_bl_files" parameterType="Map">
+	delete from Building_file 
+	<where>
+		BL_Num = #{BL_Num}
+	</where>
+
+</delete>
+
+<select id="get_bl_file_list" resultType="file_path" parameterType="Map">
+	select BF_File_path from Building_file
+	<where>
+	<if test="type=='no'">
+	 BL_Num = #{BL_Num}
+	 </if>
+	 <if test="type=='yes'">
+	 BL_Num = #{BL_Num} and BF_Type = #{img_type}
+	 </if>
+	</where>
+
+</select>
+
+
+<select id="get_bl_num_img" resultType="String" parameterType="Map">
+select BL_Num from Building_List 
+
+<where>
+	BL_B_Address = #{ob_b_addr} or BL_S_Address = #{ob_s_addr}
+</where>
+
+</select>
+
+
+<select id="get_bl_file_img" resultType="file_path" parameterType="Map">
+select BF_File_path from Building_file 
+
+<where>
+	 BL_Num = #{BL_Num} and BF_Type = #{ob_type}
+</where>
+
+</select>
+
+<select id="get_blf_num" parameterType="Map" resultType="int">
+	select BLF_Num from Building_file 
+	
+	<where>
+		BL_Num = #{bl_num}
+	</where>
+  	 order by BLF_Num DESC LIMIT 1 
+</select>
+
+
+<select id="select_type_List" parameterType="Map" resultType="BL_Type">
+	select DISTINCT BF_Type from Building_file
+	
+	<where>
+		BL_Num = #{BL_Num}
+	</where>
+	
+</select>
+
+
+
+<select id="get_bl_list" parameterType="Map" resultType="Building_List">
+
+	select BL_Num, BL_Name, BL_B_Address, BL_S_Address from Building_List
+			<where>
+			<if test="search_select=='s_adds'">BL_S_Address LIKE CONCAT('%',#{search},'%')</if>
+			<if test="search_select=='b_adds'">BL_B_Address LIKE CONCAT('%',#{search},'%')</if>
+			<if test="search_select=='name'">BL_Name LIKE CONCAT('%',#{search},'%')</if>
+			</where>
+</select>
+
+
+</mapper>

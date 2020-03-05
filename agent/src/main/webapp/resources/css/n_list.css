@@ -1,0 +1,358 @@
+@charset "UTF-8";
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,textarea,p,blockquote,th,td,input,select,button{margin:0;padding:0}
+fieldset,img{border:0 none}
+
+.wrap{
+  width: 100%;
+  height: 100%;
+  background-color: #0c2a3a;
+
+}
+.content{
+  width: 1850x;
+  height: 937px;
+	background-color: #0c2a3a;
+}
+
+.wrap_left_area{
+	width: 5%;
+	height: 100%;
+	background-color: #0c2a3a;
+}
+
+.sidemanu_area{
+  width: 100%;
+	height: 100%;
+	background-color: #0c2a3a;
+}
+
+.logo_area{
+  width: 100%;
+  height: 13%;
+  background-color: #0c2a3a;
+}
+
+.logo_area img{
+  margin-top:5%;
+  width: 100%;
+  height: 90%;
+}
+
+.side_manu{
+	width: 100%;
+	height: 84%;
+}
+
+.side_manu button{
+	width: 100%;
+	height: 5%;
+	margin-left: 6px;
+}
+
+.kind_drop{
+	color: white;
+	font-size: 15px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	display: none;
+}
+
+.kind_drop p{
+	margin-left: 10px;
+}
+
+.wrap_right_area{
+	width: 95%;
+	height: 100%;
+	background-color: #0c2a3a;
+}
+
+
+.header_area{
+	width: 100%;
+	height: 13%;
+	background-color: #0c2a3a;
+}
+
+.header_1_area{
+	width: 20%;
+}
+
+
+.village_search{
+	width: 100%;
+	margin-left: 10%;
+}
+
+h4{
+	color: white;
+	margin-bottom: 1%;	
+}
+
+
+
+.header_2_area{
+	width: 34%;
+	margin-left: 2%;
+	display: flex;
+}
+
+
+
+.division_checkbox{
+	width: 35%;
+	color: white;
+	font-size: 15px;	
+}
+
+.transaction{
+	width: 25%;
+	font-size: 15px;
+	color: white;
+	margin-left: 2%;
+}
+
+.zone{
+	width: 30%;
+	font-size: 15px;
+	color: white;
+	margin-left: 2%;
+}
+
+.header_3_area{
+
+	width: 30%;
+	margin-left: 0%;
+		display: flex;
+}
+
+.deposit{
+	width: 22%;
+	margin-left: 0%;
+		font-size: 15px;
+	color: white;	
+}
+.monthly_rent{
+		width: 22%;
+	margin-left: 2%;
+		font-size: 15px;
+	color: white;
+	
+}
+.disposal{
+		width: 25%;
+	margin-left: 2%;
+		font-size: 15px;
+	color: white;
+}
+
+.detail_submit{
+	width: 18%;
+	margin-left: 0%;	
+}
+
+.detail_submit input{
+    width: 80%;
+    height: 55%;
+    margin-top: 35%;	
+}
+
+.header_4_area{
+	width: 10%;
+	margin-left: 1%;
+	margin-right: 1%;
+
+}
+
+.option_button{
+	padding-top:15%;
+	width:100%;
+	height: 85%;
+}
+.option_button button{
+	margin-bottom: 5px;
+}
+
+
+
+
+
+
+.contents_area{
+	width: 99%;
+	height: 67%;
+	background-color: #fdfdfd;
+	margin-left: 0.5%;
+	margin-right: 0.5%;
+
+
+
+}
+.contest_list_area{
+	width:100%;
+	height:100%;
+	background-color: #fdfdfd;
+	overflow: scroll;	
+	position: relative;
+	
+
+
+
+
+
+	
+}
+
+
+.contest_list_area .content_table{
+position: fixed; 
+width:inherit; 
+padding-right: 6.89%;
+border-spacing: 0px;
+font-size: 16px;
+z-index: 100;
+
+}
+.content_table1{
+position: absolute; top:18px; width:inherit;
+border-spacing: 0px;
+font-size: 14px;
+}
+
+
+
+.content_table th{
+	text-align: center;
+	background: buttonface;
+	border-collapse: collapse;
+}
+
+.content_table th button{
+	width: 100%;
+	height: 100%;
+	border-bottom: 1px solid #6E6E6E;
+	border-top: 0.5px solid #6E6E6E;
+	border-right: 0.5px solid #6E6E6E;
+	background: buttonface;
+
+}
+
+.content_table1 td{
+	
+	border-right: 0.5px solid gray;
+	border-bottom: 0.5px solid gray;
+	text-align: center;
+	border-collapse: collapse;
+
+}
+
+
+
+.footer_area{
+	width: 100%;
+	height: 20%;
+	background-color: #0c2a3a;
+}
+
+.forter_top_area{
+	width:100%;
+	height: 16%;
+	background-color: #0c2a3a;
+}
+
+.footer_top_left{
+	width:70%;
+	height: 100%;
+	background-color: #0c2a3a;
+}
+
+.footer_top_right{
+	width:30%;
+	height: 100%;
+	background-color: #0c2a3a;
+}
+
+.footer_content_area{
+	width:99%;
+	height: 80%;
+	background-color: #fdfdfd;
+	margin-left: 0.5%;
+    margin-right: 0.5%;	
+}
+
+.footer_left_area{
+	width:70%;
+	height:100%;
+	background-color: #fdfdfd;
+}
+
+.footer_table{
+position: fixed; 
+width:inherit; 
+padding-right: 28.6%;
+border-spacing: 0px;
+font-size: 13px;
+z-index: 100;
+
+}
+
+.footer_left_area{
+	width:100%;
+	height:100%;
+	background-color: #fdfdfd;
+	overflow: scroll;	
+	position: relative;	
+}
+
+
+
+.footer_table th button{
+	width: 100%;
+	height: 100%;
+	border-bottom: 1px solid #6E6E6E;
+	border-top: 0.5px solid #6E6E6E;
+	border-right: 0.5px solid #6E6E6E;
+	background: buttonface;	
+}
+
+.footer_table1{
+position: absolute; top:18px; width:inherit;
+border-spacing: 0px;
+font-size: 13px;
+}
+
+.footer_table1 td{
+	
+	border-right: 0.5px solid gray;
+	border-bottom: 0.5px solid gray;
+	text-align: center;
+	border-collapse: collapse;
+	font-size: 13px;
+
+}
+.d_content_area{
+width:100%;
+border-spacing: 0px;
+font-size: 13px;
+z-index: 100;	
+overflow: scroll;
+}
+
+
+
+.d_content_area th button{
+	width: 100%;
+	height: 100%;
+	border-bottom: 1px solid #6E6E6E;
+	border-top: 0.5px solid #6E6E6E;
+	border-right: 0.5px solid #6E6E6E;
+	background: buttonface;		
+}
+
+
+.footer_right_area{
+	width:30%;
+	height:100%;
+	background-color: #fdfdfd;
+	border-left: 1px solid black;
+}

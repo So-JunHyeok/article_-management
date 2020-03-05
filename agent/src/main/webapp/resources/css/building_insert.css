@@ -1,0 +1,105 @@
+@charset "UTF-8";
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,textarea,p,blockquote,th,td,input,select,button{margin:0;padding:0}
+fieldset,img{border:0 none}
+
+html, body{height: 100%;}
+
+.wrap{
+	width: 100%;
+	height: 100%;
+
+}
+
+.header{
+	width: 100%;
+	height: 75px;
+	margin-bottom: 15px;	
+	border-bottom: 1px solid gray;
+}
+
+.content{
+    width: 100%;
+    height: 880px;
+    font-size: 15px;
+}
+
+input{
+font-size: 15px;	
+}
+
+.content p{
+ margin-bottom: 3px;
+}
+
+.basic_info{
+	width: 100%;
+	height: 100px;
+	
+}
+.basic_info div{
+	margin-left: 5px;	
+}
+.use_info{
+	width: 100%;
+	height: 100px;
+	
+}
+.use_info input{
+	width: 100%;
+}
+.use_info div{
+	margin-left: 5px;
+}
+.attr1_info{
+	width: 100%;
+	height: 100px;
+	
+}
+.attr1_info input{
+	width: 90%;
+	height: 30px;
+}
+.attr1_info div{
+	margin-left: 20px;
+}
+.attr2_info{
+	width: 100%;
+	height: 100px;
+
+}
+
+
+.attr2_info div{
+	margin-left: 5px;
+}
+
+.attr3_info div{
+	margin-left: 5px;
+}
+
+.attr3_info{
+	width: 100%;
+	height: 100px;
+	
+}
+.attr_content{
+	width: 100%;
+	height: 270px;
+}
+.tt{
+    width: 65px;
+    height: 30px;
+    margin-top: 23px;
+}
+
+
+.ts{
+width: 65px;
+    height: 30px;
+    margin-top: 23px;
+    margin-left: 10px;
+}
+
+.su_bt{
+	display: none;
+}

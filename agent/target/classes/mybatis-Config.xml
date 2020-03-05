@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "HTTP://mybatis.org/dtd/mybatis-3-config.dtd">
+
+
+
+<configuration>
+
+
+
+
+	<settings>
+ 		<setting name="cacheEnabled" value="true"/>
+		<setting name="lazyLoadingEnabled" value="false"/>
+		<setting name="multipleResultSetsEnabled" value="true"/>
+		<setting name="useColumnLabel" value="true"/>
+		<setting name="useGeneratedKeys" value="false"/>
+		<setting name="autoMappingBehavior" value="PARTIAL"/>
+		<setting name="defaultExecutorType" value="SIMPLE"/>
+		<setting name="defaultStatementTimeout" value="25"/>
+		<setting name="safeRowBoundsEnabled" value="false"/>
+		<setting name="mapUnderscoreToCamelCase" value="false"/>
+		<setting name="localCacheScope" value="SESSION"/>
+		<setting name="jdbcTypeForNull" value="OTHER"/>
+		<setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString"/>
+	</settings>	
+	
+	
+	<typeAliases>
+		<typeAlias alias="Object_List" 
+				   type="com.real_estate.agent.model.Object_List" />		
+		<typeAlias alias="Schedule_VO" 
+				   type="com.real_estate.agent.model.Schedule_VO" />		
+		<typeAlias alias="file_path" 
+				   type="com.real_estate.agent.model.file_path" />		
+		<typeAlias alias="Building_List" 
+				   type="com.real_estate.agent.model.Building_List" />		
+		<typeAlias alias="Customer" 
+				   type="com.real_estate.agent.model.Customer" />		
+		<typeAlias alias="bl_file_path2" 
+				   type="com.real_estate.agent.model.bl_file_path2" />		
+		<typeAlias alias="Storage_List" 
+				   type="com.real_estate.agent.model.Storage_List" />		
+		<typeAlias alias="Interest_List" 
+				   type="com.real_estate.agent.model.Interest_List" />		
+ 		<typeAlias alias="UserVO" 
+				   type="com.real_estate.agent.model.UserVO" />	
+ 		<typeAlias alias="ob_select_dong_list" 
+				   type="com.real_estate.agent.model.ob_select_dong_list" />	
+ 		<typeAlias alias="BL_Type" 
+				   type="com.real_estate.agent.model.BL_Type" />	
+	
+	</typeAliases>
+	
+	
+	<mappers>
+		<mapper resource="sql/Object_List.xml"/>
+		<mapper resource="sql/Schedule.xml"/>
+		<mapper resource="sql/Building_List.xml"/>
+		<mapper resource="sql/Customer.xml"/>
+		<mapper resource="sql/Storage.xml"/>
+	</mappers>
+		
+</configuration>

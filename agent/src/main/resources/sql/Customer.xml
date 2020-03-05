@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Customer">
+
+<select id="getCustomer_List" resultType="Customer" parameterType="Map">
+	
+	
+
+			select * from Customer_List
+			<where>
+			
+			
+			</where>
+			order by C_Num desc
+			limit #{paging}, #{countpage}
+
+</select>
+
+<select id="getCustomer_List_Count" resultType="int" parameterType="Map">
+			select count(C_Num) from Customer_List
+			<where>
+				
+			</where>
+
+</select>
+
+<insert id="insert_Customer" parameterType="Map">
+
+insert Customer_List(C_Num, C_Name, C_Gender, C_Age, C_Tel, C_Content, C_Form)
+values(
+0,
+#{Customer.C_Name},
+#{Customer.C_Gender},
+#{Customer.C_Age},
+#{Customer.C_Tel},
+#{Customer.C_Content},
+#{Customer.C_Form}
+)
+
+</insert>
+
+
+<delete id="delete_Customer" parameterType="Map">
+	delete from Customer_List
+		<where>
+		C_Num = #{C_Num}
+		</where>
+
+</delete>
+
+
+<select id="search_Customer" resultType="Customer" parameterType="Map" >
+	select * from Customer_List
+	<where>
+		<if test="search_option=='name'">C_Name = #{search}</if>
+		<if test="search_option=='tel'">C_Tel = #{search}</if>
+	</where>
+</select>
+
+
+
+
+<insert id="insert_Customer_Storage" parameterType="Map">
+insert Customer_Storage(CS_Num, OB_Num,CS_Tel)
+values(
+<if test="kind=='object'">
+0,
+#{OB_Num},
+#{CS_Tel}
+
+</if>
+<if test="kind=='Storage'">
+0,
+#{OB_Num},
+#{CS_Tel}
+
+</if>
+)
+
+</insert>
+
+
+
+<select id="get_Customer_Storage" resultType="Interest_List" parameterType="Map" >
+select * from Customer_Storage INNER JOIN Object_List 
+ON Customer_Storage.OB_Num = Object_List.OB_Num
+	<where>
+		CS_Tel = #{search}
+	</where>
+
+</select>
+
+
+<delete id="delete_customer_storage" parameterType="Map">
+	delete from Customer_Storage
+
+<where>
+	<if test="kind=='customer'">CS_Tel = #{Tel}</if>
+	<if test="kind=='del_num'">CS_Tel = #{Tel} and OB_Num = #{del_num}</if>
+	<if test="kind=='object'">OB_Num = #{del_num}</if>
+</where>
+</delete>
+
+<update id="update_customer" parameterType="Map">
+update Customer_List set
+C_Name = #{Customer.C_Name},
+C_Gender = #{Customer.C_Gender},
+C_Age = #{Customer.C_Age},
+C_Tel = #{Customer.C_Tel},
+C_Content = #{Customer.C_Content},
+C_Form = #{Customer.C_Form}
+
+<where>
+C_Tel = #{Tel}
+
+</where>
+</update>
+
+
+
+
+
+<!-- <update id="update_CS_State" parameterType="Map">
+	update Customer_Storage 
+	set CS_State = #{State}
+	
+	<where>
+		OB_Num = #{OB_Num}
+	</where>
+
+</update> -->
+
+
+<!-- <update id="update_c_object" parameterType="Map">
+	update Customer_Storage set
+	
+	CS_Kind = #{object.OB_Kind},
+	CS_Form = #{object.OB_Form},
+	CS_Name = #{object.OB_Name},
+	CS_S_Address = #{object.OB_S_Address},
+	CS_B_Address = #{object.OB_B_Address},
+	CS_Floor = #{object.OB_Floor},
+	CS_Ho = #{object.OB_Ho},
+	CS_Month_Cost = #{object.OB_Month_Cost},
+	CS_Deposit = #{object.OB_Deposit},
+	CS_Premium_Cost = #{object.OB_Premium_Cost},
+	CS_Maintenance_Cost = #{object.OB_Maintenance_Cost},
+	CS_Dealing_Cost = #{object.OB_Dealing_Cost},
+	CS_Pyeong = #{object.OB_Pyeong},
+	CS_M2 = #{object.OB_M2},
+	CS_Content = #{object.OB_Content},
+	CS_Lessor_Tel = #{object.OB_Lessor_Tel},
+	CS_Tenant_Tel = #{object.OB_Tenant_Tel},
+	CS_Deal_State = #{object.OB_Deal_State},
+	CS_Dong = #{object.OB_Dong},
+	CS_D_Kind = #{object.OB_D_Kind},
+	CS_Surtax = #{object.OB_Surtax},
+	CS_State = #{object.OB_State}
+	<where>
+		OB_Num = #{OB_Num}
+	</where>			
+				
+				
+
+</update> -->
+
+
+<select id="User_login" parameterType="Map" resultType="UserVO">
+
+	select Mb_id, Mb_pass, Mb_grade from Member
+	
+	<where>
+		Mb_id = #{UserVO.Mb_id} and Mb_pass = #{UserVO.Mb_pass}
+	</where>
+
+</select>
+
+<select id="select_Form" parameterType="Map" resultType="Customer">
+
+		select * from Customer_List
+		<where>
+		<if test="C_Form=='전체'">C_Form != "전체"</if>
+		<if test="C_Form!='전체'">C_Form = #{C_Form}</if>
+		
+		</where>
+
+</select>
+
+
+
+</mapper>

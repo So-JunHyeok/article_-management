@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="Schedule">
+
+<select id="get_Month_Schedule_List" resultType="Schedule_VO" parameterType="Map">
+			select * from Schedule_T
+			<where>		
+			SC_Year = #{sc_year} and SC_Month = #{sc_month}
+			</where>
+</select>
+
+
+<select id="get_Day_Schedule_List" resultType="Schedule_VO" parameterType="Map">
+			select * from Schedule_T
+			<where>		
+			SC_Year = #{sc_year} and SC_Month = #{sc_month} and SC_Day =#{sc_day}
+			</where>
+</select>
+
+
+
+<select id="get_Month_Schedule_Count" resultType="int" parameterType="Map">
+
+	select count(SC_Num) from Schedule_T 
+			<where>		
+			SC_Year = #{sc_year} and SC_Month = #{sc_month}
+			</where>		
+</select>
+
+
+
+
+<insert id="insert_schedule" parameterType="Map">
+
+insert Schedule_T(
+SC_Num, SC_Kind, SC_Year, SC_Month, SC_Day, SC_Time, SC_Title, SC_Content, SC_C_Name, SC_C_Tel, SC_Minute
+)
+values(
+0,
+#{schedule_vo.SC_Kind},
+#{schedule_vo.SC_Year},
+#{schedule_vo.SC_Month},
+#{schedule_vo.SC_Day},
+#{schedule_vo.SC_Time},
+#{schedule_vo.SC_Title},
+#{schedule_vo.SC_Content},
+#{schedule_vo.SC_C_Name},
+#{schedule_vo.SC_C_Tel},
+#{schedule_vo.SC_Minute}
+)
+
+
+
+
+</insert>
+
+
+
+
+<update id="update_Schedule" parameterType="Map">
+
+update Schedule_T set
+
+SC_Kind = #{schedule_vo.SC_Kind},
+SC_Year = #{schedule_vo.SC_Year},
+SC_Month = #{schedule_vo.SC_Month},
+SC_Day = #{schedule_vo.SC_Day},
+SC_Time = #{schedule_vo.SC_Time},
+SC_Title = #{schedule_vo.SC_Title},
+SC_Content = #{schedule_vo.SC_Content},
+SC_C_Name = #{schedule_vo.SC_C_Name},
+SC_C_Tel = #{schedule_vo.SC_C_Tel},
+SC_Minute = #{schedule_vo.SC_Minute}
+
+<where>
+SC_Num = #{schedule_vo.SC_Num}
+</where>
+
+
+
+
+</update>
+
+
+<delete id="delete_schedule" parameterType="Map">
+
+delete from Schedule_T
+<where>
+	SC_Num = #{SC_Num}
+</where>
+
+
+</delete>
+
+<select id="select_num_schedule" parameterType="Map" resultType="Schedule_VO">
+	select * from Schedule_T
+	<where>
+	SC_Num = #{SC_Num}
+	</where>
+
+</select>
+
+
+
+
+
+</mapper>

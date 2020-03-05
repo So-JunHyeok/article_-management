@@ -1,0 +1,150 @@
+@charset "UTF-8";
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,textarea,p,blockquote,th,td,input,select,button{margin:0;padding:0}
+fieldset,img{border:0 none}
+
+html, body{height: 100%;}
+
+.object_list_sidebar{
+	width: 20%;
+	height: 100%;
+	text-align: center;
+}
+
+
+.building_area{
+	border: 2px solid #67229f;
+    border-radius: 3px;
+    width: 90%;
+    height: 90%;
+    margin-left: 5%;
+    /* margin-right: 10%; */
+    margin-top: 15%;
+    margin-bottom: 0%;
+}
+
+.building_area br{
+	height: 14px;
+}
+
+.building_img{
+	width: 90%;
+	height: 200px;
+	margin: 5%;
+}
+
+
+.b_content_top{
+	margin-top : 25px;
+	width : 100%;
+}
+
+.b_content_top p{
+text-align: left;
+margin-top: 10px;
+}
+
+
+.b_content_mid p{
+text-align: left;
+margin-top: 10px;
+}
+
+
+.b_content_bot p{
+text-align: left;
+margin-top: 10px;
+}
+
+
+
+.object_list_content{
+	width: 100%;
+	height: 100%;
+
+}
+
+.search_area{
+	width: 100%;
+	height: 100px;
+}
+
+
+.search_title{
+    width: 120px;
+    margin-left: 410px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+	
+}
+
+.search_input{
+	width: 100%;
+	height: 100%;
+}
+
+
+.select1{
+    width: 7%;
+    margin-left: 300px
+}
+
+.select1 select{
+	height: 35px;
+    border-radius: 5px;
+    border-color: #67229;
+    margin-right: 10px;
+}
+
+.input1{
+	margin-right:30%;
+	width: 50%;
+	background-color: #67229f;
+	height: 40px;
+}
+
+.input1 input{
+    height: 30px;
+    margin-top: 5px;
+    margin-left: 10px;
+    width: 700px;
+}
+
+.input1 img{
+	width: 50px;
+	height: 35px;
+}
+
+
+.register_content{
+	width: 100%;
+	height: 86%;
+}
+
+.object_kind_select{
+	width: 100%;
+	
+}
+
+.object_kind_button{
+	width: 5%;
+}
+
+.object_kind_button button{
+	width: 100%;
+	height: 100%;
+}
+
+.object_informatin select{
+	width: 120px;
+	
+}
+
+.object_kind_select button{
+	background: white;
+	color: #0c2a3a;
+	padding: 3px;
+	font-weight: bold;
+
+
+
+	

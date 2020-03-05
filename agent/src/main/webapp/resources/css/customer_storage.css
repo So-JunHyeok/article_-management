@@ -1,0 +1,361 @@
+@charset "UTF-8";
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,textarea,p,blockquote,th,td,input,select,button{margin:0;padding:0}
+fieldset,img{border:0 none}
+
+html, body{height: 100%;}
+
+
+
+.content{
+	margin-top : 1%;
+	width: 98%;
+	margin-bottom: 1%;
+}
+	
+
+
+.left{
+	width: 5%;
+	height: 100%;
+}
+
+
+.mid{
+	width: 100%;
+	height: 100%;
+	display: flex;
+}
+
+
+.customer_con{
+	width: 100%;
+}
+
+
+
+
+
+.Storage_Area{
+	width: 1500px;	
+	border: 1px solid rgb(235, 235, 235);
+	margin: 0 auto;
+	height: 825px;
+	
+}
+
+.Storage_Area th{
+		text-align: center;
+	background-color: #f3f3f3;
+	font-size: 16px;
+	border: 1px solid #d3caca;
+}
+.Storage_Area td{
+	text-align: center;
+	font-size: 14px;
+	border: 1px solid #d3caca;
+	height: 39px;
+	
+}
+
+.Storage_Area input{
+	width: 100%;
+	height: 80%;
+    background: white;
+    color: #0c2a3a;
+    font-weight: bold;
+    margin-left: 1px;
+}
+
+
+.right{
+	width: 5%;
+	height: 100%;
+}
+
+.Storage_Title{
+	border-bottom: 1px solid #d3caca;
+	height: 40px;
+	display: flex;
+}
+
+.Storage_Num1{
+	height : 100%;
+	width: 180px;
+	border-right: 1px solid #d3caca;
+	
+}
+.Storage_Num2{
+	height : 100%;
+	width: 180px;
+	border-right: 1px solid #d3caca;
+	
+	
+}
+
+.Customar_Name{
+	width: 1225px;
+	text-align: center;
+	display: flex;
+	
+}
+
+
+.Customar_Name div{
+	border-right: 1px solid #d3caca;
+}
+
+
+.Storage_Title h4{
+	margin-top: 10px;
+	margin-left: 0px;
+}
+
+
+
+.custmar_name_h4{
+	width: 250px;
+	
+}
+
+
+h6{
+	border-bottom: 1px solid #d3caca;
+	
+}
+
+
+.customar_bt{
+	width: 358px;
+}
+
+
+.customar_bt button{
+	margin-top: 3px;
+    background: white;
+    color: #0c2a3a;
+    padding: 1px;
+    font-weight: bold;
+    height: 30px;
+    width: 80px;
+    margin-left: 5px;
+    font-size: 14px;
+    
+}
+
+
+.button_area{
+	width: 270px; 
+	display: flex;
+}
+
+
+
+.Customar_Name_phone{
+	display: none;
+}
+
+
+
+
+.button_area div{
+display: flex; width: 100%; height: 40px;	
+}
+
+
+.ci_table{
+	width: 100%; 
+	border-spacing: 0 0 0 5px;
+}
+
+.ci_table_phone{
+	display: none;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@media(max-width: 981px)  {
+
+	
+.ci_table_phone{
+	width: 100%; 
+	border-spacing: 0 0 0 2px;
+}	
+	
+	
+.ci_table{
+display: none;
+}
+
+.ci_table_phone{
+	display: block;
+	}
+	
+
+.Customar_Name_phone{
+		width: 890px;
+	text-align: center;
+	display: block;
+	border-right:1px solid #d3caca;
+	font-size: 25px;
+}
+
+
+.content{
+	margin-top : 1%;
+	width: 98%;
+	margin-bottom: 1%;
+}
+	
+
+
+.left{
+	width: 5%;
+	height: 100%;
+}
+
+
+.mid{
+	width: 100%;
+	height: 100%;
+	display: flex;
+}
+
+
+.customer_con{
+	width: 100%;
+}
+
+
+
+
+
+.Storage_Area{
+	width: 980px;	
+	border: 1px solid rgb(235, 235, 235);
+	margin: 0 auto;
+	height: 825px;
+	
+}
+
+.Storage_Area th{
+		text-align: center;
+	background-color: #f3f3f3;
+	font-size: 16px;
+	border: 1px solid #d3caca;
+}
+.Storage_Area td{
+	text-align: center;
+	font-size: 14px;
+	border: 1px solid #d3caca;
+	height: 39px;
+	
+}
+
+.Storage_Area input{
+	width: 100%;
+	height: 80%;
+    background: white;
+    color: #0c2a3a;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+.right{
+	width: 5%;
+	height: 100%;
+}
+
+.Storage_Title{
+	border-bottom: 1px solid #d3caca;
+	height: 120px;
+	display: flex;
+}
+
+.Storage_Num1{
+	height : 100%;
+	width: 350px;
+	border-right: 1px solid #d3caca;
+	
+}
+.Storage_Num2{
+	height : 100%;
+	width: 180px;
+	border-right: 1px solid #d3caca;
+	
+	
+}
+
+.Customar_Name{
+	width: 1020px;
+	text-align: center;
+	display: none;
+	
+}
+
+
+.Customar_Name div{
+	border-right: 1px solid #d3caca;
+}
+
+
+.Storage_Title h4{
+	margin-top: 10px;
+	margin-left: 20px;
+}
+
+
+
+.custmar_name_h4{
+	width: 400px;
+	
+}
+
+
+h6{
+	border-bottom: 1px solid #d3caca;
+	
+}
+
+
+.customar_bt{
+	width: 358px;
+}
+
+
+.customar_bt button{
+	margin-top: 3px;
+    background: white;
+    color: #0c2a3a;
+    padding: 1px;
+    font-weight: bold;
+    height: 30px;
+    width: 80px;
+    margin-left: 5px;
+    font-size: 14px;
+    
+}
+
+
+.button_area{
+	width: 90px; 
+	display: block;
+	font-size: 25px;
+}
+
+.button_area div{
+display: flex; width: 100%; height: 60px;	
+}
+
+}
+
