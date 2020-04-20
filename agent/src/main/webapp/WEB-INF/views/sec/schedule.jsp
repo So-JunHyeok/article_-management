@@ -160,12 +160,17 @@
 									var a_title = list_value.sc_Title;
 									var a_kind = list_value.sc_Kind;
 									var b = "";
+									var kind_color = "";
 									
-					 				if(a_kind == "방문"){b = "#daeef3";}
+/* 					 				if(a_kind == "방문"){b = "#daeef3";}
 					 				if(a_kind == "계약"){b = "#ccc0da";}
-					 				if(a_kind == "잔금"){b = "#da9694";}
+					 				if(a_kind == "잔금"){b = "#da9694";} */
+									if(a_kind == "방문"){kind_color = "resources/img/b.png";}
+									if(a_kind == "계약"){kind_color = "resources/img/g.png";}
+									if(a_kind == "잔금"){kind_color = "resources/img/j.png";}
+									var kind_img = '<img style="width : 15px;" src='+kind_color+'>';
 					 				var cal_schedule = "<p class='ti'"
-					 				+"style=background:"+b+";>"+a_title+"</p>";	
+					 				+"style=background:"+b+";>"+ kind_img + a_title+"</p>";	
 									$(".cal-schedule"+a_day).append(cal_schedule);
 									});
 								}); 							
@@ -298,11 +303,8 @@
 			schedule1();
 			setCookie("Name", "");
 			today = new Date();
-			
-			
-			
-			
 
+			
 			$('.day_td').on("click", function(){
 				$('.day_td').css("border-color", "#f3f3f3");
 				$(this).css("border-color", "#ccc0da");
@@ -373,12 +375,7 @@
 				});
 				
 		});
-		
 
-
-		
-
-		
 		function Next(){
 
 			if(day == lastDay){
@@ -425,9 +422,6 @@
 		}
 		
 		
-
-		
-		
 		function init(){
 	    	sc_day = today.getDate();
 			sc_year = today.getFullYear();
@@ -435,13 +429,6 @@
 			
 		}
 		
-
-		
-
-		
-	    
-
-
 	    
 	    $(document).on("click",".sc", function(){
 	    	$('.sc').css("background", "white");
@@ -463,23 +450,7 @@
 	    	
 	    });
 
-	    
-	    
 
-	    
-	    
-	    
-	    
-
-	    	
-
-	    	
-	    
-	    
-	    
-	    
-	    
-	    
 		</script>
 
 
@@ -488,7 +459,7 @@
 		
 		<div class="wrap" style="width: 100%; height: 100%;">
 		
-		<!-- 프로그램 상단 구성(메뉴바) -->
+		<!-- 데스크탑 수정 -->
 			<div class="header" style="width: 100%; height: 75px;">
 				<jsp:include page="/resources/header.jsp"></jsp:include>
 	        
@@ -533,9 +504,9 @@
 				
 				<div class="ym" style="display: flex;" data-value="${Set_year}" data-value1="${Set_month}">
 				<h3 class="top_year">${Set_year}년</h3>
-				<a href="schedule?MoveMonth=Prev&Set_year=${Set_year}&Set_month=${Set_month}"><img alt="" src="resources/img/left.png" style="margin-top: 10px;"></a>
 				 <h2 class="top_month">${Set_month}월</h2>
-				<a href="schedule?MoveMonth=Next&Set_year=${Set_year}&Set_month=${Set_month}"><img src="resources/img/Right.png" style="margin-top: 10px;"></a>
+				<a style="margin-left: 510px; margin-right: 30px;" href="schedule?MoveMonth=Prev&Set_year=${Set_year}&Set_month=${Set_month}"><img alt="" src="resources/img/left.png" style="margin-top: 20px;"></a>
+				<a href="schedule?MoveMonth=Next&Set_year=${Set_year}&Set_month=${Set_month}"><img src="resources/img/Right.png" style="margin-top: 20px;"></a>
 				</div>
 				
 				</div>				
