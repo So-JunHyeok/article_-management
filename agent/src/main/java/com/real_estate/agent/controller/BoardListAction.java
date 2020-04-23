@@ -101,7 +101,7 @@ public ModelAndView listview(
 		@RequestParam(value="coo", defaultValue="no")String coo
 		
 )throws Exception {
-	
+	System.out.println("ListOption"+ListOption);
 	ModelAndView mv = new ModelAndView();
 	
 	Map map = new HashMap();
@@ -538,7 +538,7 @@ public String update_state(
 		map.put("ob_num", OB_Num);
 		try {
 			OBF_Num = boardService.get_obf_num(map);
-			System.out.println("num:"+OBF_Num);
+			/* System.out.println("num:"+OBF_Num); */
 		} catch (NullPointerException e) {
 			OBF_Num = 0;
 		}

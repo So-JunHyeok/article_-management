@@ -52,12 +52,12 @@
 	var pag_num = "${PagNum}";
 	var temp = new Array();
 	var willCookie = "";
-	
+	var state = "${state}";
 	var m_value = "${m_value}";
 	var pag_n = "";
 	var Startpage = "";
 	var list_filter = "${list_filter}";
-	var state = "${state}";
+
 	
 	
 	//전역변수
@@ -90,15 +90,23 @@
 		});
 		var co = getCookie("Name");
 		var add_co ="";
+
 		if(test != ""){
-			if(co == ""){setCookie("Name", test);}
+			
+			if(co == ""){
+				
+				setCookie("Name", test);
+			}
 			else{
 				add_co = co + "," + test;
 				setCookie("Name", add_co);
 				/* document.cookie += "," +test; */	
-			}	
-		  }
-	    }
+			}
+			
+		}
+		
+
+	}
 
 
 	    var getCookie = function(name) {
@@ -332,9 +340,12 @@
     function state_select(){
     	var temp_state = $('.state_select').text();
     	if(temp_state == "계약on"){
-    		$('.state_select').text("계약off");    	
+    		$('.state_select').text("계약off");
+    	
     		state = "계약off";
+
     	}
+    	
     	if(temp_state == "계약off"){
     		$('.state_select').text("계약on");
     		state = "계약on";
@@ -348,18 +359,18 @@
 	// 계약상태를 업데이트한다.
 	$(document).ready(function(){
 		
-		if(state == '계약off'){
-			$('.state_select').css("background","gainsboro");
-			}
-		if(state == '계약on'){	
-			$('.state_select').css("background","yellow");
-			}
+		if(state == '계약off'){	$('.state_select').css("background","gainsboro");}
+		if(state == '계약on'){	$('.state_select').css("background","yellow");}
 		
 		if(m_value == "address"){address_view();}
 		if(m_value == "content"){content_view();}
 		if(m_value == "price"){price_view();}
 		if(m_value == "py_tel"){py_tel_view();}		
 	
+		
+		
+
+
 		var kind_f ="";
 		var form_f ="";
 		var dong_f ="";
@@ -376,11 +387,21 @@
 		var mcost_max_f ="";
 		var ob_num = "";
 		$('.state_select').text(state);
-		
- function cookie_list(){
 		var value = "address";
+		
+
+		
+		
+		
 		var cookie = "${coo}";
-		if(cookie == "no"){date.setDate(date.getDate() - 1);}	
+		if(cookie == "no"){
+			date.setDate(date.getDate() - 1);
+			
+		
+		}	
+
+		
+		
 		var fff = getCookie("Name");
 		var temp = new Array();
 		var break_for = "no";
@@ -388,27 +409,50 @@
 		if(fff != ""){
 			var arr = fff.split(",");
 			var arr_len = arr.length;
+
+
+			
 			for(var i = 0; i < arr.length; i++){
 				ind = 0;
 				for(var j = 0; j < 13; j++){		
 				
 					var input_n = $("input[name=d]").eq(j).val();	
+						
 						if(input_n == arr[i]){
+							
 							$("input[name=d]").eq(j).prop("checked", true);
 							arr[i] = "";
+
 							ind = 1;
 							break;
 						}
+
 				 }
+			
 				if(ind == 0){
-					if(i == arr.length-1){temp += arr[i];} 																							//cookie 배열의 마지막배열이면 
-					else{if(arr[i] != ""){temp += arr[i]+",";}}																						 /* if(arr[i] == ""){temp += arr[i];} // arr[i]가 공백이면   else{temp += arr[i]+",";} */
+					if(i == arr.length-1){
+						temp += arr[i];
+						
+					}
+					else{
+						if(arr[i] == ""){
+
+							temp += arr[i];
+						}
+						else{
+
+							temp += arr[i]+",";
+						}
+						
+					}
 				}
+				
+				
+				
 			}
 			setCookie("Name", temp);
+						
 		}
- 	}
-
 		// yes가 아니면 실행하였기 때문에 두번째 체크가 일어나지 않음?
 		$('.kind_bt').click(function(){
 			var kind_text = $(this).text();
@@ -443,10 +487,11 @@
 			Startpage = "${startpage}";
 			var listoption_p = "${ListOption}";
 			var Next_pag = 0;
+			
+
 			checked_in()
-			location.href ="list?Nextpage="+Next_pag+"&startpage="+Startpage+
-			"&ListOption="+listoption_p+"&currentpage="+pag_n+
-			"&coo=yes&state="+state+"&m_value="+m_value;	
+			location.href ="list?Nextpage="+Next_pag+"&startpage="+Startpage+"&ListOption="+listoption_p+"&currentpage="+pag_n+"&coo=yes&state="+state+"&m_value="+m_value;
+			
 		});
 		
 		
@@ -534,7 +579,29 @@
 		});
 
 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+ 
+		
+		
 
+		
+
+
+		
+		
+		
+		
 		
 		
 		$(document).on("click","#ajax_test", function(){
@@ -542,8 +609,12 @@
 			$('.s_table_con *').remove();
 			$('.s_list_v *').remove();
 		
-			var s_address = $(this).attr("data-value");
-			var b_address = $(this).attr("data-value1");		
+		var s_address = $(this).attr("data-value");
+		var b_address = $(this).attr("data-value1");
+		
+		console.log("s변수=" + s_address)
+		console.log("b변수=" + b_address)
+		console.log("state=" + state)
 			$.ajax({
 				type : "GET",	
 				dataType : "json",
@@ -555,8 +626,8 @@
 	 						console.log(list_key, list_value)
 	 						
 
-	 			var tbody = "<tbody class='td_tr1' style='background: white;'>";
-	 			var m_list_m1 = '<div class="m_list_m2" style="display: flex; width: 980px; background: white;">';
+	 						var tbody = "<tbody class='td_tr1' style='background: white;'>";
+	 						var m_list_m1 = '<div class="m_list_m2" style="display: flex; width: 980px; background: white;">';
 	 						
 	 						
 	 						if(list_value.ob_State == '계약'){
@@ -576,35 +647,75 @@
 	 							tbody = "<tbody class='td_tr1' style='background: white;'>";
 	 							m_list_m1 = '<div class="m_list_m2" style="display: flex; width: 980px; background: white;">';
 	 						}
-
+	 						
+	 						
+	 						
+	 						
+	 				
+	 			
 	 						var ck_m = '<span style="width:20px; height: 60px; border: 1px solid #d3caca; display: table-cell; vertical-align: middle; text-align: center;"><input class="ts" type="checkbox" name="ba" value='+list_value.ob_Num +'></span>';
 	 						var key_object ='<div class="key_object" style="display: table-cel; width: 565px; font-size: 20px;">';
+
 	 						var OB_Kind_m = '<span style="width:100px; height: 60px; border: 1px solid #d3caca; display: table-cell; vertical-align: middle; text-align: center;">'+list_value.ob_Kind +'<br>('+list_value.ob_D_Kind +')</span>';
 	 						var OB_Form_m = '<span style="width:65px; height: 60px; border: 1px solid #d3caca;  display: table-cell; vertical-align: middle; text-align: center;">'+list_value.ob_Form +'</span>';
 	 						var OB_Dong_m = '<span style="width:115px; height: 60px; border: 1px solid #d3caca; display: table-cell; vertical-align: middle; text-align: center;">'+list_value.ob_Dong +'</span>';
 	 						var OB_Name_m = '<span style="width:165px; height: 60px; border: 1px solid #d3caca; display: table-cell; vertical-align: middle; text-align: center;">'+list_value.ob_Name +'</span>';
 	 						var OB_Floor_m = '<span style="width:45px; height: 60px; border: 1px solid #d3caca; display: table-cell; vertical-align: middle; text-align: center;">'+list_value.ob_Floor +'</span>';
 	 						var OB_Ho_m = '<span style="width:55px; height: 60px; border: 1px solid #d3caca; display: table-cell; vertical-align: middle; text-align: center;">'+list_value.ob_Ho +'</span>';
+	 						
 	 						var value_object = '<div class="value_object" style="display: table-cell; width: 370px; height:60px; font-size: 20px; overflow: scroll;">';
+	 						
+	 						
 	 						var OB_B_Address_m = '<span class="address_view" style="width:370px; height: 60px; border: 1px solid #d3caca; display: table-cell; vertical-align: middle; text-align: center;">'+list_value.ob_B_Address +'</span>';
+	 						
 	 						var OB_Content_m = '<span class="content_view" style="width:370px; height: 60px; border: 1px solid #d3caca; display: table-cell; vertical-align: middle; text-align: center; overflow: scroll;">'+ list_value.ob_Content +'</span>'
+							
 	 						var OB_Pyeong_m = '	<span class="py_tel_view" style="width:80px; height: 60px; border: 1px solid #d3caca; display: table-cell; vertical-align: middle; text-align: center; overflow: scroll;">'+list_value.ob_Pyeong+'</span>';
 	 						var OB_Tel_m = '	<span class="py_tel_view" style="width:290px; height: 60px; border: 1px solid #d3caca; display: table-cell; vertical-align: middle; text-align: center; overflow: scroll;">주)'+ list_value.ob_Lessor_Tel +'<br>세)'+list_value.ob_Tenant_Tel +'</span>';
+	 							
+	 		
+	 						
+	 						
 	 						var py_tel_m = OB_Pyeong_m + OB_Tel_m;
+							
+							
+							
+							
+	 						
 	 						var OB_Dealing_Cost_m =  '<span class="price_view" style="width:80px; height: 60px; border: 1px solid #d3caca;  display: table-cell; vertical-align: middle; text-align: center;">'+list_value.ob_Dealing_Cost +'</span>';
 	 						var OB_Deposit_m =  '<span class="price_view" style="width:77px; height: 60px; border: 1px solid #d3caca;  display: table-cell; vertical-align: middle; text-align: center; table-layout: fixed;">'+list_value.ob_Deposit +'</span>';
 	 						var OB_Month_Cost_m = '<span class="price_view" style="width:65px; height: 60px; border: 1px solid #d3caca;  display: table-cell; vertical-align: middle; text-align: center;">'+list_value.ob_Month_Cost +'</span>'; 
 	 						var OB_Maintenance_Cost_m = '<span class="price_view" style="width:65px; height: 60px; border: 1px solid #d3caca;  display: table-cell; vertical-align: middle; text-align: center;">'+list_value.ob_Maintenance_Cost +'</span>';  
 	 						var OB_Premium_Cost_m =  '<span class="price_view" style="width:80px; height: 60px; border: 1px solid #d3caca;  display: table-cell; vertical-align: middle; text-align: center;">'+list_value.ob_Premium_Cost +'</span>';
-	 						var D2_m2_p = OB_Dealing_Cost_m + OB_Deposit_m + OB_Month_Cost_m + OB_Maintenance_Cost_m + OB_Premium_Cost_m;	 						
+	 				
+	 						
+	 						var D2_m2_p = OB_Dealing_Cost_m + OB_Deposit_m + OB_Month_Cost_m + OB_Maintenance_Cost_m + OB_Premium_Cost_m;
+	 						
 	 						var view_form = '<div style="width: 45px; height: 60px; font-size: 22px; display: table-cell;">'		
-								+'<span class="view_form" data-value='+list_value.ob_Num+'style="width:70px; height: 60px; border: 1px solid #d3caca; display: table-cell; text-align: center;"><img src="resources/img/list.JPG" style="width: 35px; height: 45px;"></span>'
-								+'</div>';	 
+								+'<span class="view_form" data-value='+list_value.ob_Num+'style="width:70px; height: 60px; border: 1px solid #d3caca; display: table-cell; text-align: center;"><img src="resources/img/list.JPG" style="width: 35px; height: 45px;"></span>	'
+								+'</div>';
+	 		
+							
+
+								
+								
+								
+						
+						
+							
+							
+							
 								
 								
 								
 								
 								
+								
+								
+								
+								
+								
+	 						
 	 						var td = "<tr>";
 	 						var etd = "</tr>";
 	 						var ck = "<td class='te1' rowspan='2'><input class=ts type=checkbox name=ba value="+list_value.ob_Num +"></td>"
@@ -620,7 +731,9 @@
 	 						var OB_Floor = "<td class='te9' rowspan='2'>"+list_value.ob_Floor  +"</td>";
 	 						var OB_Ho = "<td class='te10' rowspan='2'>"+list_value.ob_Ho +"</td>";
 	 						var OB_Pyeong = "<td class='te11' rowspan='2'>"+list_value.ob_Pyeong+"</td>";
-	 						var OB_M2 = "<td class='te11' rowspan='2'>"+list_value.ob_M2  +"</td>";	 					 						
+	 						var OB_M2 = "<td class='te11' rowspan='2'>"+list_value.ob_M2  +"</td>";
+	 						
+	 						
 	 						var OB_Deposit = "<td class='te14' rowspan='2'>"+list_value.ob_Deposit +"</td>";
 	 						var OB_Month_Cost = "<td class='te15' rowspan='2'>"+list_value.ob_Month_Cost +"</td>";
 	 						var OB_Premium_Cost = "";
@@ -651,7 +764,10 @@
 	 							OB_Dealing_Cost = "<td class='te13' rowspan='2'>"+list_value.ob_Dealing_Cost + "</td>";
 	 						}
 	 						
-	
+	 						
+
+
+			
 							var view = '<td rowspan="2" style="width: 50px;" class="view_form" data-value="'+list_value.ob_Num +'"><img src="resources/img/list.JPG" style="width: 25px; height: 30px;"></td>';
 	 						
 	 						$('.s_table_con').append(tbody+"<tr>"+ck+ OB_Num + OB_Date_date + OB_Kind + OB_Form 
@@ -667,7 +783,7 @@
 	 						if(m_value == "py_tel"){py_tel_view();}
 	 						
 	 						
-	 				
+	 						console.log(OB_Name)
 	 					});
 	 				});
 
@@ -749,6 +865,18 @@
 
 			});
 
+				
+		
+		
+
+
+		
+	
+		
+		
+
+
+		
 		
 		if("OneRoom" == select_op){
 			select_op = "원룸";
@@ -1236,6 +1364,7 @@
 							 
 							 		
 							 		<td rowspan="2" class="OB_Floor">${object_list.OB_Floor}</td>
+
 							 		<td rowspan="2" class="OB_Ho">${object_list.OB_Ho}</td>
 							 		
 							 		
@@ -1470,6 +1599,7 @@
 							<c:if test="${list_filter == 'no'}">
 							<span class="pag_bt_f_n" style="width: 40px;">다음</span>
 							</c:if>
+							
 							</c:if>
 						</div>
 						<div class="but_2">
