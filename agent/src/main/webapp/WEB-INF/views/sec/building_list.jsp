@@ -38,23 +38,35 @@
 	var state = "${state}";
 	
 	
-			function list_sub(){
-				$('.sub_list *').remove();
-				var ob_b_adress = $('.b_adress').text();
-				var ob_s_adress = $('.s_adress').text();
-				$.ajax({
-					type : "GET",	
-					dataType : "json",
-					url : "object_list_data",
-					data : {ob_s: ob_s_adress, ob_b: ob_b_adress, state: state},
-					success : function(data) {
-		 				$.each(data, function(key, value){
-		 					$.each(value, function(list_key, list_value){
+	function list_sub(){
+		$('.sub_list *').remove();
+		var ob_b_adress = $('.b_adress').text();
+		var ob_s_adress = $('.s_adress').text();
+		$.ajax({
+			type : "GET",	
+			dataType : "json",
+			url : "object_list_data",
+			data : {ob_s: ob_s_adress, ob_b: ob_b_adress, state: state},
+			success : function(data) {
+ 				$.each(data, function(key, value){
+ 					$.each(value, function(list_key, list_value){
+ 	/* 					console.log(list_key, list_value) */
+
+ 						
  						var tr = "<tr>";
- 						if(list_value.ob_State == '계약'){tr ="<tr class='td_tr1' style='background: #ffff00;'>";}
- 							else if(list_value.ob_State == '보류'){tr ="<tr class='td_tr1' style='background: #f3dbdb;'>";}
- 							else if(list_value.ob_State == '방문'){tr ="<tr class='td_tr1' style='background: #dbeef4;'>";}
- 						else{tr = "<tr class='td_tr1' style='background: white;'>";}
+ 						
+ 						if(list_value.ob_State == '계약'){
+ 							tr = "<tr class='td_tr1' style='background: #ffff00;'>";
+ 						}
+ 						else if(list_value.ob_State == '보류'){
+ 							tr = "<tr class='td_tr1' style='background: #f3dbdb;'>";
+ 						}
+ 						else if(list_value.ob_State == '방문'){
+ 							tr = "<tr class='td_tr1' style='background: #dbeef4;'>";
+ 						}
+ 						else{
+ 							tr = "<tr class='td_tr1' style='background: white;'>";
+ 						}
  						var td = "<tr>";
  						var etd = "</tr>";
  						var ck = "<td><input class=ts type=checkbox name=d value="+list_value.ob_Num +"></td>"
@@ -67,8 +79,8 @@
 						var OB_Dong = "<td>"+list_value.ob_Dong  +"</td>";
  						var OB_S_Address = "<td>"+list_value.ob_B_Address  +"</td>";
  						var OB_B_Address = "<td>"+list_value.ob_B_Address  +"</td>";
- 						var OB_Floor = "<td>"+list_value.ob_Floor  +"</td>";
- 						var OB_Ho = "<td>"+list_value.ob_Ho +"</td>";
+						var OB_Floor = "<td>"+ parseInt(list_value.ob_Floor) +"</td>";  
+						var OB_Ho = "<td>"+ parseInt(list_value.ob_Ho) +"</td>";
  						var OB_Month_Cost = "<td>"+list_value.ob_Month_Cost +"</td>";
  						var OB_Premium_Cost = "<td>"+list_value.ob_Premium_Cost +"</td>";
  						var OB_Maintenance_Cost = "<td>"+list_value.ob_Maintenance_Cost  +"</td>";
@@ -78,17 +90,31 @@
  						var OB_Content = "<td>"+list_value.ob_Content +"</td>";
  						var OB_Tel = "<td>"+list_value.ob_Lessor_Tel+"<br>"+ list_value.ob_Tenant_Tel +"</td>";
  						var OB_Deal_State ="<td>"+list_value.ob_Deal_State  +"</td>";					
+
+
+
+
+						
 						var view = "<td ><a onclick='nwindow()'>보기</a></td>";
+ 						
  						$('.sub_list').append(tr+ck+ OB_Num + OB_Date_date + OB_Kind + OB_Form 
  								+ OB_Dong + OB_Name + OB_S_Address + OB_Floor + OB_Ho + OB_Month_Cost + OB_Premium_Cost 
  								+ OB_Maintenance_Cost + OB_Dealing_Cost + OB_Pyeong + OB_M2 +OB_Content + OB_Tel  +   "</tr>");
-		 					});
-		 				});
-					 },				
-					error : function(e) {console.log(e.responseText);}
-				 });
-			   }
+ 						
+ 						console.log(OB_Name)
+ 					});
+ 				});
+
+
 			
+		},				
+			error : function(e) {
+                    console.log(e.responseText);
+                }
+	
+});
+	}
+	
 	$(function(){
 		var test = $('.td_tr').css("background-color");
 			$('.td_tr').click(function(){
@@ -367,13 +393,13 @@
 	
 	
 	function move_prev(){
-	var prev_max = $('.customar_bt2').attr("data-value");
+	var prev_min = $('.customar_bt2').attr("data-value1");
 	var prev_num = $('#prev_bt').val()
-		prev_max = Number(prev_max);
+		prev_min = Number(prev_min);
 		prev_num = Number(prev_num);
 		
-		if(prev_num < prev_max){
-			location.href = "building_nhn?Prev=Prev&Num="+prev_num+"&state="+state;
+		if(prev_num > prev_min){
+			location.href = "building_nhn?Prev=Prev&rownum="+prev_num+"&state="+state;
 		}
 		else{
 			alert("이전건물정보가 없습니다.");
@@ -382,14 +408,14 @@
 	
 	
 	function move_next(){
-		var next_mim = $('.customar_bt2').attr("data-value1");
+		var next_max = $('.customar_bt2').attr("data-value");
 		var next_num = $('#next_bt').val()
-		next_mim = Number(next_mim);
+		next_max = Number(next_max);
 		next_num = Number(next_num);
 
-			if(next_num > next_mim){
+			if(next_num < next_max-1){
 				
-				location.href = "building_nhn?Next=Next&Num="+next_num+"&state="+state;
+				location.href = "building_nhn?Next=Next&rownum="+next_num+"&state="+state;
 				
 			}
 			else{
@@ -547,8 +573,8 @@
 						var OB_Dong = "<td>"+list_value.ob_Dong  +"</td>";
  						var OB_S_Address = "<td>"+list_value.ob_B_Address  +"</td>";
  						var OB_B_Address = "<td>"+list_value.ob_B_Address  +"</td>";
- 						var OB_Floor = "<td>"+list_value.ob_Floor  +"</td>";
- 						var OB_Ho = "<td>"+list_value.ob_Ho +"</td>";
+ 						var OB_Floor = "<td>"+ <fmt:formatNumber value="list_value.ob_Floor " pattern="#,###.#"/> +"</td>";
+ 						var OB_Ho = "<td>"+ <fmt:formatNumber value="list_value.ob_Ho " pattern="#,###.#"/>+"</td>";
  						var OB_Month_Cost = "<td>"+list_value.ob_Month_Cost +"</td>";
  						var OB_Premium_Cost = "<td>"+list_value.ob_Premium_Cost +"</td>";
  						var OB_Maintenance_Cost = "<td>"+list_value.ob_Maintenance_Cost  +"</td>";
@@ -557,7 +583,8 @@
   						var OB_M2 = "<td>"+list_value.ob_M2  +"</td>";
  						var OB_Content = "<td>"+list_value.ob_Content +"</td>";
  						var OB_Tel = "<td>"+list_value.ob_Lessor_Tel+"<br>"+ list_value.ob_Tenant_Tel +"</td>";
- 						var OB_Deal_State ="<td>"+list_value.ob_Deal_State  +"</td>";					
+ 						var OB_Deal_State ="<td>"+list_value.ob_Deal_State  +"</td>";	
+			
 
 
 
@@ -631,8 +658,8 @@
 						 <div class="m_Customar_Name">
 						 
 						 <div class="m_customar_bt2" data-value="${BL_Max}" data-value1="${BL_Min}">
-							<button id="prev_bt" onclick="move_prev()" value="${BL_Num}">이전</button>
-							<button id="next_bt" onclick="move_next()" value="${BL_Num}">다음</button>
+							<button id="prev_bt" onclick="move_prev()" value="${rownum}">이전</button>
+							<button id="next_bt" onclick="move_next()" value="${rownum}">다음</button>
 						</div>
 						<div class="m_customar_bt3">
 				
@@ -667,8 +694,8 @@
 					<div class="Customar_Name">
 	
 						<div class="customar_bt2" data-value="${BL_Max}" data-value1="${BL_Min}">
-							<button id="prev_bt" onclick="move_prev()" value="${BL_Num}">이전</button>
-							<button id="next_bt" onclick="move_next()" value="${BL_Num}">다음</button>
+							<button id="prev_bt" onclick="move_prev()" value="${rownum}">이전</button>
+							<button id="next_bt" onclick="move_next()" value="${rownum}">다음</button>
 						</div>
 						<div class="customar_bt3">
 							

@@ -318,6 +318,7 @@ public ModelAndView building_search(
 	int BL_Max = 0;
 	int BL_Min = 0;
 	int BL_Num = 0;
+	int rownum = 0;
 	
 	try {
 	BL_Max = BuildingService.getbl_List_count(map);
@@ -335,6 +336,9 @@ public ModelAndView building_search(
 
 	map.put("BL_Num", bl_Num);
 	Building_List search_List = BuildingService.getbl_List_search(map);
+	
+	rownum = search_List.getRowNum();
+	
 	try{
 	BL_Num = search_List.getBL_Num();	
 	}
@@ -342,11 +346,11 @@ public ModelAndView building_search(
 		
 	}
 
-	
+	mv.addObject("rownum", rownum);
 	mv.addObject("state", state);
 	mv.addObject("BL_Max", BL_Max);
 	mv.addObject("BL_Min", BL_Min);
-	mv.addObject("BL_Num", BL_Num);
+		/* mv.addObject("BL_Num", BL_Num); */
 	mv.addObject("object_list", search_List);
 	mv.setViewName("sec/building_list");
 	
@@ -359,101 +363,43 @@ public ModelAndView building_view(
 		@RequestParam(value="Num", defaultValue= "0")int Num,
 		@RequestParam(value="state", defaultValue= "계약off")String state,
 		@RequestParam(value="Next", defaultValue= "no")String Next,
+		@RequestParam(value="rownum", defaultValue= "0")int rownum,
 		@RequestParam(value="Prev", defaultValue= "no")String Prev
 		) throws Exception {
 	
+	int BL_Num=0;
+	
 	ModelAndView mv = new ModelAndView();
 	Map map = new HashMap();
-	try {BL_Max = BuildingService.getbl_List_count(map);}
+	
+	
+	try {BL_Max = BuildingService.getbl_List_count(map); System.out.println("count="+BL_Max);}
 	catch (NullPointerException e) {BL_Max = 0;	}
-	try {BL_Min = BuildingService.getbl_List_min(map);
-	} catch (NullPointerException e) {BL_Min = 0;}
-		
-	mv.addObject("BL_Max", BL_Max);
-	mv.addObject("BL_Min", BL_Min);	
-		if(Num == 0) {
-			int i = 0;
-			try {
-			BL_Num = BuildingService.getbl_List_count(map);
-			} catch (NullPointerException e) {
-				BL_Num = 0;
-			}
-			if(BL_Num != 0) {
-				map.put("BL_Num", BL_Num);	
-				BF_Type = BuildingService.get_Type_list(map);
-				try {
-				object_list = BuildingService.getBuilding_List(map);
-				map.put("BL_Num", BL_Num-1);
-				}
-				catch (IndexOutOfBoundsException e) {
-					while (mess == "tt") {
-						BL_Num--;
-						map.put("BL_Num", BL_Num);
-						try {
-						object_list = BuildingService.getBuilding_List(map);	
-						mess = "ff";
-						}
-						catch (IndexOutOfBoundsException e2) {
-							mess = "tt";
-							if(BL_Num <= 0) {mess = "ff";}						
-						}
-					}
-				}
-			}
-			mv.addObject("BL_Num", BL_Num);
+	BL_Min = 0;
+	
+	if(Next.equals("Next")) {
+		rownum+=1;
+		System.out.println(rownum);
 	}
-		else {
-			if("Next".equals(Next)) {
-				Num--;
-				map.put("BL_Num", Num);
-				BF_Type = BuildingService.get_Type_list(map);
-				try {
-				object_list = BuildingService.getBuilding_List(map);
-				System.out.println(object_list.getBL_Num());
-				}
-				catch(NullPointerException e) {
-					while (mess == "tt") {
-						Num--;
-						map.put("BL_Num", Num);
-						try {
-						object_list = BuildingService.getBuilding_List(map);
-						System.out.println(object_list.getBL_Num());
-						mess = "ff";
-						}
-						catch(NullPointerException e2) {mess = "tt";}
-					}
-				}
-			}
-			if("Prev".equals(Prev)) {
-				Num++;
-				map.put("BL_Num", Num);
-				BF_Type = BuildingService.get_Type_list(map);
-				try {
-				object_list = BuildingService.getBuilding_List(map);
-				System.out.println(object_list.getBL_Num());
-				}
-				catch(NullPointerException e) {
-					while (mess == "tt") {
-						Num++;
-						map.put("BL_Num", Num);
-						try {
-						object_list = BuildingService.getBuilding_List(map);
-						System.out.println(object_list.getBL_Num());
-						mess = "ff";
-						}
-						catch(NullPointerException e2) {mess = "tt";}
-					}
-				}	
-			}
-			
-			mv.addObject("BL_Num", Num);
-		}
-		
+	if(Prev.equals("Prev")) {
+		rownum-=1;
+	}
+	
 
+	
+	map.put("rownum", rownum);
+	try {
+		System.out.println(rownum);
+	object_list = BuildingService.getBuilding_List(map);
+	} catch (NullPointerException e) {
 		
+	}
+	BL_Num  = object_list.getBL_Num();
 		
-
-
+		mv.addObject("BL_Max", BL_Max);
+		mv.addObject("BL_Num", BL_Num);
+		mv.addObject("BL_Min", BL_Min);
+		mv.addObject("rownum", rownum);
 		mv.addObject("state", state);
 		mv.addObject("BL_Type_List", BF_Type);
 		mv.addObject("object_list", object_list);
@@ -527,7 +473,6 @@ public ModelAndView building_add_img(
 		@RequestParam(value="BL_Num", defaultValue="0")int BL_Num
 		
 		)throws Exception {
-/*	System.out.println("건물이미지 추가");*/
 	Map map = new HashMap();
 
 	String uploadFileName = "";
@@ -586,7 +531,7 @@ public ModelAndView building_add_img(
 		
 		
 		
-		
+		System.out.println(servletContext.getRealPath("/") + SAVE_PATH);
 		
 		BuildingService.insert_blfiles(map);
 		
@@ -604,7 +549,7 @@ public ModelAndView building_add_img(
 		
 	}	
 	
-}	
+}	mv.addObject("BL_Num", BL_Num);
 	mv.setViewName("popup/success");
 	mv.addObject("view","bliding_insert");
 	return mv;

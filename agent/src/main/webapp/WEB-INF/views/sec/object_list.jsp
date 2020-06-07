@@ -52,11 +52,11 @@
 	var pag_num = "${PagNum}";
 	var temp = new Array();
 	var willCookie = "";
-	var state = "${state}";
-	var m_value = "${m_value}";
+	var state = "${OL.state}";
+	var m_value = "${OL.m_value}";
 	var pag_n = "";
 	var Startpage = "";
-	var list_filter = "${list_filter}";
+	var list_filter = "${OL.list_filter}";
 
 	
 	
@@ -458,8 +458,8 @@
 			var kind_text = $(this).text();
 			
 			
-			var s_title = "${S_Title}";
-			var c_tel = "${Tel}";
+			var s_title = "${IO.s_Title}";
+			var c_tel = "${IO.tel}";
 			var listoption = "";
 			
 			
@@ -1191,7 +1191,7 @@
 						
 						<input class="search_ob" type="submit" name="filter_bt" value="검색" style="width: 50px; height: 27px;">
 						
-						<input type="hidden" name="state" value="${state}">
+						<input type="hidden" name="state" value="${OL.state}">
 						<button type="button" class="state_select" onclick="state_select()"></button>
 						</div>
 						
@@ -1200,8 +1200,8 @@
 						
 						
 						
-						<input type="hidden" name="S_Title" value="${S_Title}">	
-						<input type="hidden" name="C_tel" value="${Tel}">	
+						<input type="hidden" name="S_Title" value="${IO.s_Title}">	
+						<input type="hidden" name="C_tel" value="${IO.tel}">	
 					</div>
 					</form>
 					<div class="kind_mb" style="width: 100%; height: 90px;">
@@ -1257,10 +1257,10 @@
 				        			<col class="cl6"/><!-- 층수 -->
 				        			<col class="cl7"/><!-- 호수 -->
 				        			<col class="cl8"/><!-- 면적 -->
-				        			<c:if test="${ListOption eq 'Officetel' || ListOption eq 'Villa' || ListOption eq 'Apartment' || ListOption eq 'Shop' || ListOption eq 'Shop_House'}">
+				        			<c:if test="${OL.listOption eq 'Officetel' || OL.listOption eq 'Villa' || OL.listOption eq 'Apartment' || OL.listOption eq 'Shop' || OL.listOption eq 'Shop_House'}">
 				        			<col class="cl13"/><!-- 매매가 -->
 				        			</c:if>
-				        			 <c:if test="${ListOption eq 'Shop' || ListOption == 'Shop_House' || ListOption eq 'Officetel'}">
+				        			 <c:if test="${OL.listOption eq 'Shop' || OL.listOption == 'Shop_House' || OL.listOption eq 'Officetel'}">
 				        			<col class="cl12"/><!-- 권리금 -->
 				        			</c:if>		
 				        			<col class="cl9"/><!-- 보증금 -->
@@ -1300,10 +1300,10 @@
 							 		<th scope="col">호수</th>
 							 		
 							 		<th scope="col">평</th>
-							 		<c:if test="${ListOption eq 'Officetel' || ListOption eq 'Villa' || ListOption eq 'Apartment' || ListOption eq 'Shop' || ListOption eq 'Shop_House'}">
+							 		<c:if test="${OL.listOption eq 'Officetel' || OL.listOption eq 'Villa' || OL.listOption eq 'Apartment' || OL.listOption eq 'Shop' || OL.listOption eq 'Shop_House'}">
 							 		<th scope="col">매매가</th>
 							 		</c:if>
-							 		 <c:if test="${ListOption eq 'Shop' || ListOption == 'Shop_House' || ListOption eq 'Officetel'}">
+							 		 <c:if test="${OL.listOption eq 'Shop' || OL.listOption == 'Shop_House' || OL.listOption eq 'Officetel'}">
 							 		<th scope="col">권리금</th>
 							 		</c:if>
 							 		<th scope="col">보증금</th>
@@ -1355,37 +1355,29 @@
 							 		<td rowspan="2" class="OB_B_Address" data-value="${object_list.OB_S_Address}">${object_list.OB_B_Address}</td>
 						
 
-
-
-							
-
-
-					
-							 
-							 		
 							 		<td rowspan="2" class="OB_Floor">${object_list.OB_Floor}</td>
 
 							 		<td rowspan="2" class="OB_Ho">${object_list.OB_Ho}</td>
 							 		
 							 		
 							 		
-							 		<c:if test="${py_m2 eq 'm2'}">
+							 		<c:if test="${OL.py_m2 eq 'm2'}">
 							 		<td rowspan="2" class="OB_M2">${object_list.OB_M2}</td>
 							 		<input type="hidden" class="OB_Pyeong" value="${object_list.OB_Pyeong}">
 							 	
 							 		</c:if>
-							 		<c:if test="${py_m2 eq 'py'}">
+							 		<c:if test="${OL.py_m2 eq 'py'}">
 							 		<td rowspan="2" class="OB_Pyeong"><fmt:formatNumber value="${object_list.OB_Pyeong}" pattern="#.###"/></td>
 							 			
 							 		<input type="hidden" class="OB_M2" value="${object_list.OB_M2}">		
 							 		</c:if> 
 							 		
 							 		
-							 		<c:if test="${ListOption eq 'Officetel' || ListOption eq 'Villa' || ListOption eq 'Apartment' || ListOption eq 'Shop' || ListOption eq 'Shop_House'}">
+							 		<c:if test="${OL.listOption eq 'Officetel' || OL.listOption eq 'Villa' || OL.listOption eq 'Apartment' || OL.listOption eq 'Shop' || OL.listOption eq 'Shop_House'}">
 							 		<td rowspan="2" class="OB_Dealing_Cost"><fmt:formatNumber value="${object_list.OB_Dealing_Cost}" pattern="#,###.#"/> </td>
 							 		</c:if>
 							 		
-							 		 <c:if test="${ListOption eq 'Shop' || ListOption == 'Shop_House' || ListOption eq 'Officetel'}">
+							 		 <c:if test="${OL.listOption eq 'Shop' || OL.listOption == 'Shop_House' || OL.listOption eq 'Officetel'}">
 							 		<td rowspan="2" class="OB_Premium_Cost"><fmt:formatNumber value="${object_list.OB_Premium_Cost}" pattern="#,###.#" /></td>
 							 		</c:if>	
 							 		 	
@@ -1401,13 +1393,13 @@
 
 							 		
 							 		
-							 		<c:if test="${ListOption eq 'OneRoom' || ListOption == 'TwoRoom' || ListOption == 'ThreeRoom'}">
+							 		<c:if test="${OL.listOption eq 'OneRoom' || OL.listOption == 'TwoRoom' || OL.listOption == 'ThreeRoom'}">
 								 	<td  rowspan="2">${object_list.OB_Content}</td>
 								 	</c:if>
-								 	<c:if test="${ListOption eq 'Shop' || ListOption == 'Shop_House'}">
+								 	<c:if test="${OL.listOption eq 'Shop' || OL.listOption == 'Shop_House'}">
 								 	<td rowspan="2">${object_list.OB_Content}</td>	
 								 	</c:if>
-								 	<c:if test="${ListOption eq 'Officetel' || ListOption eq 'Villa' || ListOption eq 'Apartment'}">
+								 	<c:if test="${OL.listOption eq 'Officetel' || OL.listOption eq 'Villa' || OL.listOption eq 'Apartment'}">
 								 	<td rowspan="2">${object_list.OB_Content}</td>	
 								 	</c:if>
 								 	
@@ -1542,25 +1534,25 @@
 					
 					
 					
-					<div class="paging_area" data-value ="${Tel}">
+					<div class="paging_area" data-value ="${IO.tel}">
 					 <div class="paging_t" style="display:flex;">
 					 	<div class="interest">
 					 	
 					 	
-					 	<c:if test="${Tel eq '0'}">
+					 	<c:if test="${IO.tel eq '0'}">
 					 	
-					 	<c:if test="${S_Title == 0}">
+					 	<c:if test="${IO.s_Title == 0}">
 					 	<input type="button" onclick="Storage_page()" value="관심매물등록">
 					 	</c:if>
 					 	
-					 	<c:if test="${S_Title != 0}">
-					 	<input class="S_Title" type="button" onclick="add_ob()" value="관심매물추가" data-value="${S_Title}">
+					 	<c:if test="${IO.s_Title != 0}">
+					 	<input class="S_Title" type="button" onclick="add_ob()" value="관심매물추가" data-value="${IO.s_Title}">
 					 	</c:if>
 					 	
 					 	</c:if>
 					 	
-					 	<c:if test="${Tel ne '0'}">
-					 	<input class="Tel" type="button" onclick="C_add_ob()" value="고객매물추가" data-value="${Tel}">
+					 	<c:if test="${IO.tel ne '0'}">
+					 	<input class="Tel" type="button" onclick="C_add_ob()" value="고객매물추가" data-value="${IO.tel}">
 					 	</c:if>
 					 	
 					 	
@@ -1569,31 +1561,31 @@
 					 	
 					 	</div>
 						<div class="paging" style="width: 84%;">
-							<c:if test="${startpage !=1}">
-							<span><a href="list?Nextpage=-10&startpage=${startpage}&ListOption=${ListOption}"style="width: 40px;">이전</a></span>
+							<c:if test="${Pag.startpage !=1}">
+							<span><a href="list?Nextpage=-10&startpage=${Pag.startpage}&ListOption=${OL.listOption}"style="width: 40px;">이전</a></span>
 							</c:if>
-							<c:if test="${endpage < pagelist}">
-								<c:set var="Page_end" value="${endpage}"></c:set>
+							<c:if test="${Pag.endpage < Pag.lastpage}">
+								<c:set var="Page_end" value="${Pag.endpage}"></c:set>
 							</c:if>
-							<c:if test="${endpage > pagelist}">
-								<c:set var="Page_end" value="${pagelist}"></c:set>
+							<c:if test="${Pag.endpage > Pag.lastpage}">
+								<c:set var="Page_end" value="${Pag.lastpage}"></c:set>
 							</c:if>
-							<c:forEach var="PagNum" begin="${startpage}" end="${Page_end}" step="1">
+							<c:forEach var="PagNum" begin="${Pag.startpage}" end="${Page_end}" step="1">
 							
-							<c:if test="${list_filter == 'list'}">
+							<c:if test="${OL.list_filter == 'list'}">
 							<span><a class="pag_bt">${PagNum}</a></span>
 							</c:if>
-							<c:if test="${list_filter == 'no'}">
+							<c:if test="${OL.list_filter == 'no'}">
 			
 							<span><a class="pag_bt_f">${PagNum}</a></span>
 							</c:if>
 							
 							</c:forEach>
 							
-							<c:if test="${endpage > pagelist}">
+							<c:if test="${Pag.endpage > Pag.lastpage}">
 							
 							<c:if test="${list_filter == 'list'}">
-							<span><a href="list?Nextpage=10&currentpage=${startpage+10}&ListOption=${ListOption}&startpage=${startpage}" style="width: 40px;">다음</a></span>
+							<span><a href="list?Nextpage=10&currentpage=${Pag.startpage+10}&ListOption=${OL.listOption}&startpage=${Pag.startpage}" style="width: 40px;">다음</a></span>
 							</c:if>
 							
 							<c:if test="${list_filter == 'no'}">

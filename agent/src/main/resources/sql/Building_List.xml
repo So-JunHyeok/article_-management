@@ -6,14 +6,8 @@
 <mapper namespace="Building">
 
 <select id="getBuilding_List" resultType="Building_List" parameterType="Map">
-	
-			
-
-			select * from Building_List
-			<where>
-			BL_Num = #{BL_Num}
-
-			</where>
+<!-- 찾고자하는 건물정보를 불러옴  -->	
+			select * from Building_List order by BL_Num desc limit #{rownum},1;
 
 
 </select>
@@ -21,8 +15,6 @@
 
 <select id="getBuilding_search" resultType="Building_List" parameterType="Map">
 	
-			
-
 			select * from Building_List
 			<where>
 			BL_Num = #{BL_Num}
@@ -127,7 +119,7 @@ values(
 
 
 <select id="get_bl_list_count" resultType="int" parameterType="Map">
-	select distinct BL_Num from Building_List order by BL_Num desc limit 1;
+	select count(*) from Building_List;
 </select>
 
 

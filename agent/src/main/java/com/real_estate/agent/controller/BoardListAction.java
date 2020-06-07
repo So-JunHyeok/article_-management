@@ -36,8 +36,11 @@ import com.real_estate.agent.dao.Object_List_Service;
 import com.real_estate.agent.dao.Stroage_Service;
 import com.real_estate.agent.model.Building_List;
 import com.real_estate.agent.model.Filter_param;
+import com.real_estate.agent.model.Interest_option;
 import com.real_estate.agent.model.Object_List;
+import com.real_estate.agent.model.Object_ListOption;
 import com.real_estate.agent.model.Object_List_file;
+import com.real_estate.agent.model.Paging_VO;
 import com.real_estate.agent.model.file_LIst;
 import com.real_estate.agent.model.file_path;
 import com.real_estate.agent.model.ob_select_dong_list;
@@ -87,71 +90,42 @@ public ModelAndView popup_view()throws Exception {
 	
 @RequestMapping(value="list", method=RequestMethod.GET)
 public ModelAndView listview(
-		@RequestParam(value="ListOption", defaultValue="OneRoom")String ListOption,
-		@RequestParam(value="_list_filter", defaultValue="list")String list_filter,
-		@RequestParam(value="address", defaultValue="번지명")String address,
-		@RequestParam(value="py_m2", defaultValue="py")String py_m2,
-		@RequestParam(value="currentpage", defaultValue= "1")int currentpage,
-		@RequestParam(value="Nextpage", defaultValue= "0")int Nextpage,
-		@RequestParam(value="S_Title", defaultValue="0")int S_Title,
-		@RequestParam(value="C_tel", defaultValue="0")String Tel,
-		@RequestParam(value="startpage", defaultValue="1")int startpage,
-		@RequestParam(value="state", defaultValue="계약off")String state,
-		@RequestParam(value="m_value", defaultValue="address")String m_value,
-		@RequestParam(value="coo", defaultValue="no")String coo
+		@ModelAttribute("Object_ListOption")Object_ListOption OL,
+		@ModelAttribute("Paging_VO")Paging_VO Pag,
+		@ModelAttribute("Interest_option")Interest_option IO
+
 		
 )throws Exception {
-	System.out.println("ListOption"+ListOption);
 	ModelAndView mv = new ModelAndView();
-	
 	Map map = new HashMap();
-
-   int paging = 0;
-   int endpage = 1;
-   int pagecount = 0;
-   int pagelist = 10;
- 
-   map.put("state", state);
-   
-   startpage = startpage + Nextpage;
-   pagelist = startpage-1 + 10;
-   paging = (currentpage-1)*13;
-   
-	map.put("ListOption", ListOption);
-	pagecount = boardService.getObfect_Count(map);
 	
-	if(pagecount % 13 == 0) {
-		endpage = pagecount / 13;
-	}
-	if(pagecount % 13 != 0) {
-		endpage = (pagecount / 13)+1;
-	}
-
-	map.put("paging", paging);
-	map.put("countpage", 13);
+	int total_list = 0;
 	
-	List<Object_List> object_list = boardService.getObject_List(map);
-	List <ob_select_dong_list> dong_list = boardService.dong_list(map);
+	map.put("ListOption", OL.getListOption());						//카테고리 구분자
+	map.put("state", OL.getState());								//계약 on-off
+	
+	total_list = boardService.getObfect_Count(map);         // 데이터의 총 개수 구하는 메서드
+	
+	//Paging_VO pag = new Paging_VO(total_list, Pag1.getCurrentpage(), Pag1.getStartpage(), Pag1.getNextpage()); //페이징 처리
+	
+	Pag.Paging_P();
+	
+	
+    map.put("start",Pag.getStart());        				//찾을 데이터의 시작 row 값
+    map.put("list_number", Pag.getList_number()); 			//가져올 데이터의 개수 
+    System.out.println("start"+Pag.getStart());
+    System.out.println("list_number"+Pag.getList_number());
+    
+    
+	List<Object_List> object_list = boardService.getObject_List(map);     //위의 조건들을 담아 DB에 접근해서 데이터를 실제로 가져오는 메서드
+	List <ob_select_dong_list> dong_list = boardService.dong_list(map);   // 등록된 데이터의 동 이름을 가져온다(중복제거)
 		
-	mv.addObject("m_value", m_value);
-	mv.addObject("state", state);
-	mv.addObject("dong_list", dong_list);
-	mv.addObject("list_filter", list_filter);
-	mv.addObject("pagelist", pagelist);
-	mv.addObject("startpage", startpage);
-	mv.addObject("endpage", endpage);
-	mv.addObject("address", address);
-	mv.addObject("py_m2", py_m2);
+	mv.addObject("OL", OL);
+	mv.addObject("Pag", Pag);
+	mv.addObject("IO", IO);
 	mv.addObject("object_list", object_list);
-	mv.addObject("S_Title", S_Title);
-	mv.addObject("Tel", Tel);
-	mv.addObject("currentpage", currentpage);
-	mv.addObject("coo", coo);
+	mv.addObject("dong_list", dong_list);
 	mv.setViewName("sec/object_list");
-	
-	
-	
-	mv.addObject("ListOption", ListOption);
 	return mv;
 }
 	
@@ -307,7 +281,7 @@ public ModelAndView listview(
 				throws Exception {
 	ModelAndView mv = new ModelAndView();
 	Map map = new HashMap();
-	
+
 	Object_List_file ob_list = null;
 	
 	/*	OLF.getObject_List_file().get(0).getOB_B_Address();	*/
@@ -614,3 +588,29 @@ public String update_state(
 }
 
 	
+
+
+
+
+
+/*
+ * int paging = 0; int endpage = 1; int pagecount = 0; int pagelist = 10;
+ * 
+ * map.put("state", state);
+ * 
+ * startpage = startpage + Nextpage; // 시작페이지는 시작된 페이지 + 다음페이지 pagelist =
+ * startpage-1 + 10; // 페이지의 개수(10개단위로 EX) 현재 시작페이지 11이면 20까지 나타낸다
+ * 
+ * 
+ * 
+ * paging = (currentpage-1)*13; // ROW 데이터의 몇번째 부터 가져올 것인지 선택한다.
+ * 
+ * map.put("ListOption", ListOption); pagecount =
+ * boardService.getObfect_Count(map); //전체 데이터의 개수를 구한다.
+ * 
+ * if(pagecount % 13 == 0) { // 전체 페이지를 13으로 나누어 나머지가 0이면 endpage = pagecount /
+ * 13; // 마지막 페이지가 왼쪽처럼 계산됨 } if(pagecount % 13 != 0) { endpage = (pagecount /
+ * 13)+1; }
+ * 
+ * map.put("paging", paging); map.put("countpage", 13);
+ */

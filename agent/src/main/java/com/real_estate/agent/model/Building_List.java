@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 public class Building_List {
-
+	int rowNum;
 	private String BL_Name; /* 건물명 */
 	private String BL_B_Address; /* 번지명 */
 	private String BL_S_Address; /* 도로명 */
@@ -205,6 +205,12 @@ public class Building_List {
 	}
 	public void setBL_Subway(String bL_Subway) {
 		BL_Subway = bL_Subway;
+	}
+	public int getRowNum() {
+		return rowNum;
+	}
+	public void setRowNum(int rowNum) {
+		this.rowNum = rowNum;
 	}
 	
 

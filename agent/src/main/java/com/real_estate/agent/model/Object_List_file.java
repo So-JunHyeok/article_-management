@@ -25,8 +25,8 @@ public class Object_List_file {
 	private String OB_Name;
 	private String OB_S_Address;
 	private String OB_B_Address;
-	private double OB_Floor;
-	private double OB_Ho;
+	private String OB_Floor;
+	private String OB_Ho;
 	private double OB_Month_Cost;
 	private double OB_Deposit;
 	private double OB_Premium_Cost;
@@ -87,16 +87,16 @@ public class Object_List_file {
 	public void setOB_B_Address(String oB_B_Address) {
 		OB_B_Address = oB_B_Address;
 	}
-	public double getOB_Floor() {
+	public String getOB_Floor() {
 		return OB_Floor;
 	}
-	public void setOB_Floor(double oB_Floor) {
+	public void setOB_Floor(String oB_Floor) {
 		OB_Floor = oB_Floor;
 	}
-	public double getOB_Ho() {
+	public String getOB_Ho() {
 		return OB_Ho;
 	}
-	public void setOB_Ho(double oB_Ho) {
+	public void setOB_Ho(String oB_Ho) {
 		OB_Ho = oB_Ho;
 	}
 	public double getOB_Month_Cost() {

@@ -19,10 +19,12 @@ public class Object_List_ServiceImpl implements Object_List_Service {
 	private Object_List_DaoImpl Object_List_DAO;
 	
 	@Override
-	public List<Object_List> getObject_List(Map map) throws Exception {
-		return Object_List_DAO.getObject_List(map);
+	public List<Object_List> getObject_List(Map map) throws Exception {	
 		
 		
+		
+		
+		return Object_List_DAO.getObject_List(map);		
 	}
 
 	@Override
